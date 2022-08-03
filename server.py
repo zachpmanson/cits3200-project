@@ -1,6 +1,7 @@
 import asyncio
 import websockets
 
+host = ""
 port = 8765
 clients = []
 
@@ -20,8 +21,8 @@ async def handler(websocket):
                 print(f"{len(clients)} connections")
 
 async def main():
-    async with websockets.serve(handler, "localhost", port) as server:
-        print(f"Websocket open on port {port}")
+    async with websockets.serve(handler, host, port) as server:
+        print(f"Websocket open on {host}:{port}")
         await asyncio.Future()  # run forever
         
 
