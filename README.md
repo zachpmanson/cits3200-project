@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./documents/robot-circle.png" alt="Sitting robot" width="100" height="100">
+</p>
+
 # cits3200-project
 A repo for our CITS3200 project
 
