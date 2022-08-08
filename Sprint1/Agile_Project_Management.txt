@@ -1,0 +1,3 @@
+Description: A set of stories to be completed in Sprint 2. It is recommended that you also create a set of intermediate acceptance criteria to assess the products of that Sprint for your internal use, but these will not assessed.
+
+Url: https://www.atlassian.com/agile/project-management/epics-stories-themes
