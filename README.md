@@ -5,6 +5,27 @@
 # cits3200-project
 A repo for our CITS3200 project
 
+## Setup
+
+To install dependencies for the chatbot **you must use Python 3.7**.  It is best to create a venv for this.  Run these commands in the repo folder. **If on Windows RUN POWERSHELL AS ADMINISTRATOR.**
+
+```Powershell
+# Create a venv called venv
+python -m venv venv
+
+# Activate venv on Windows
+. ./venv/Scripts/activate
+
+# Activate venv on macOS/Linux
+. ./venv/bin/activate
+
+# Install dependencies (will take a few mins and may have pyyaml error, seems to not matter)
+pip install -r ./chatbot/requirements.txt
+
+# May need to be run as sudo on macOS/Linux
+python -m spacy download en
+```
+
 Important Dates
  - Sprint 1 due 5pm Wednesday 17th August (to client, copy to cssubmit, due 11:59pm)
  - Personal Relfection due 11:59pm Friday 19th August (to cssubmit)
