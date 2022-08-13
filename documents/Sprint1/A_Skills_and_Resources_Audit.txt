@@ -1,1 +1,0 @@
-Description: A Skills and Resources Audit. The idea is that, before you dive into the project, the team should undertake an audit of what skills and tools the team needs to successfully carry out the project, and therefore what you need to learn/acquire (and from where).
