@@ -7,7 +7,7 @@ Yulia Shiikha (<yulia.shiikha@rcswa.edu.au>)
 Afagh Malek (<afagh.malek@research.uwa.edu.au>)
 
 ### Mentor:
-(On Hold for now, he hasn't found enough for all the groups)
+Richard  Wardrobe (<Richard.Wardrobe@woodside.com>)
 
 <br>
 
