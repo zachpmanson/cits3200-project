@@ -1,7 +1,7 @@
 from logging import root
 from tkinter import *
 from tkinter import ttk
-
+import tkinter as tk
 
 def create_window(getReply):
 
@@ -11,10 +11,11 @@ def create_window(getReply):
     # message_window not returning cursor to top left
 
     # parent window
-    main_window = Tk()
+    main_window = tk.Tk()
     main_window.title("Chat Bot v0.1") # window name
     main_window.geometry("400x500+100+100") # dimensions + Location; Width x Height + x + y axis
     main_window.resizable(width=False, height=False) # disable window resize
+
 
     # get input function
     def send(input):       
@@ -55,7 +56,7 @@ def create_window(getReply):
 
     # main menu widgets - possibly delete
     main_menu.add_cascade(label="Drop Down", menu = file_menu) 
-    main_menu.add_command(label="Button 2") 
+    main_menu.add_command(label="Log Out") 
     main_menu.add_command(label="Button 3") 
     main_window.config(menu=main_menu) 
 
