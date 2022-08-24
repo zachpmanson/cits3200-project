@@ -1,7 +1,7 @@
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 from chatterbot.trainers import ChatterBotCorpusTrainer
-
+import scraper
 chatbot = ChatBot("Bot1")
 conversation = [
     "Hello",
@@ -24,7 +24,9 @@ def getReply(msg):
     if (msg == "Hi"):
         reply = "Hello, how are you?"
     elif (msg == "Bye"):
-        reply =  "Goodbye"
+        reply = "Goodbye"
+    elif ("search" in msg):
+        reply = scraper.google_search(msg.replace("search ", ""))
     elif(msg):
         reply = chatbot.get_response(msg)
     else:
