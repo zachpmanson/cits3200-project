@@ -1,30 +1,40 @@
 import bs4
 import requests
+from googlesearch import search
 
 def google_search(query):
     url = 'https://google.com/search?q=' + "+".join(query.split())
     req = requests.get( url )
     soup = bs4.BeautifulSoup(req.text, "html.parser")
+    heading_object=soup.find_all( 'h3' )
     links = []
     for i, item in enumerate(soup.find_all( 'h3' )):
         if item.parent.get("href") is None: continue
         links.append({
             "title":item.getText(),
-            "link":item.parent.get("href")[7:]
+            "link":item.parent.get("href")[10:]
         })
+    for info in heading_object:
+        print(info.getText())
+        print("--------------------------------------------------------------------------------------------")
     return links
+    
 
 def scholar_search(query):
     url = 'https://scholar.google.com.au/scholar?q=' + "+".join(query.split())
     req = requests.get( url )
     soup = bs4.BeautifulSoup(req.text, "html.parser")
     links = []
+    heading_object=soup.find_all( 'h3' )
     for i, item in enumerate(soup.find_all( 'h3' )):
         if item.a.get("href") is None: continue
         links.append({
             "title":item.getText(),
             "link":item.a.get("href")
         })
+    for info in heading_object:
+        print(info.getText())
+        print("--------------------------------------------------------------------------------------------")
     return links
 
 if __name__ == "__main__":
@@ -33,3 +43,5 @@ if __name__ == "__main__":
     from pprint import pprint
     pprint(google_search(q))
     pprint(scholar_search(q))
+    print("--------------------------------------------------------------------------------------------")
+    
