@@ -45,7 +45,7 @@ def create_window(getReply):
 
     #================== Creating Root Window =================================================#    
     root_window = tk.Tk()
-    root_window.title("Chat Bot v0.1") # window name
+    root_window.title("Chat Bot v0.2") # window name
     root_window.geometry("400x500+1400+400") # dimensions + Location; Width x Height + x + y axis
     root_window.resizable(width=False, height=False) # disable window resize
     root_window.rowconfigure(0, weight=1) # configuring window rows
