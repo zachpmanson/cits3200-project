@@ -2,3 +2,4 @@ venv/
 *.DS_Store
 *.sqlite3
 __pycache__/
+cits3200/

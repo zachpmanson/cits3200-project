@@ -15,18 +15,22 @@ def weather(city):
     time = soup.select('#wob_dts')[0].getText().strip()
     info = soup.select('#wob_dc')[0].getText().strip()
     weather = soup.select('#wob_tm')[0].getText().strip()
-    print(location)
-    print(time)
+    # print(location)
+    # print(time)
 
-    print(info)
-    print(weather+"°C")
- 
- 
-city = input("City Name ->  ")
-city = city+" weather"
-weather(city)
-print("Have a wonderful Day!")
- 
+    # print(info)
+    # print(weather+"°C")
+
+    return "The weather in " + location + " at " + time + " is " + info + " at temperature " + weather + " °C "
+
+
+
+if __name__ == "__main__":
+    city = input("City Name ->  ")
+    city = city+" weather"
+    print(weather(city))
+    print("Have a wonderful Day!")
+    
 
 
 
