@@ -27,7 +27,12 @@ class Calendar():
             else:
                 flow = InstalledAppFlow.from_client_secrets_file(
                     CREDENTIALS_FILE, SCOPES)
-                creds = flow.run_local_server(port=0)
+                creds = flow.run_local_server(
+                    port=0, 
+                    success_message="Successfully authorized Chatbot! You can close this window.", 
+                    open_browser=True, 
+                    redirect_uri_trailing_slash=True
+                )
 
             # Save the credentials for the next run
             with open('token.pickle', 'wb') as token:
@@ -99,4 +104,5 @@ if __name__ == '__main__':
     from pprint import pprint
     pprint(cal.get_calendar_list())
     pprint(cal.get_events())
-    cal.create_event()
+    if input("Create calendar event (y/n)")=="y":
+        cal.create_event()
