@@ -3,3 +3,5 @@ venv/
 *.sqlite3
 __pycache__/
 cits3200/
+chatbot/credentials.json
+chatbot/token.pickle
