@@ -1,9 +1,7 @@
 
-from logging import root
 from tkinter import *
-from tkinter import ttk
 import tkinter as tk
-from tkinter import messagebox
+import time 
 
 password = "computer"
 
@@ -39,9 +37,9 @@ def create_window(getReply):
         else:
             print("Invalid password or gmail")
 
-    def hush():
+    def hush(): 
         print("Bot is now hushed")
-
+        # time.sleep(10)
 
     #================== Creating Root Window =================================================#    
     root_window = tk.Tk()
