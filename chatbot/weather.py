@@ -1,6 +1,5 @@
 import bs4
 import requests
-from googlesearch import search
  
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
@@ -16,18 +15,22 @@ def weather(city):
     time = soup.select('#wob_dts')[0].getText().strip()
     info = soup.select('#wob_dc')[0].getText().strip()
     weather = soup.select('#wob_tm')[0].getText().strip()
-    print(location)
-    print(time)
+    # print(location)
+    # print(time)
 
-    print(info)
-    print(weather+"°C")
- 
- 
-city = input("City Name ->  ")
-city = city+" weather"
-weather(city)
-print("Have a wonderful Day!")
- 
+    # print(info)
+    # print(weather+"°C")
+
+    return "The weather in " + location + " at " + time + " is " + info + " at temperature " + weather + " °C "
+
+
+
+if __name__ == "__main__":
+    city = input("City Name ->  ")
+    city = city+" weather"
+    print(weather(city))
+    print("Have a wonderful Day!")
+    
 
 
 

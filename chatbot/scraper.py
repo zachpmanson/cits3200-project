@@ -1,6 +1,5 @@
 import bs4
 import requests
-from googlesearch import search
 
 def google_search(query):
     url = 'https://google.com/search?q=' + "+".join(query.split())
