@@ -1,6 +1,7 @@
 
 from tkinter import *
 import tkinter as tk
+from PIL import ImageTk, Image
 import time 
 
 # outstanding UI issues
@@ -10,6 +11,8 @@ import time
 # custom buttons, gui colour scheme
 # implement avatars to customisation buttons
 # check ios - buttons
+# binding return key to submit button
+# bot binds return key after visiting frame2 to frame1
 
 set_font = ("Roboto", 11) # setting font style and size
 
@@ -41,7 +44,11 @@ def create_window(getReply):
     def hush(): 
         print("Bot is now hushed")
         root_window.wm_state('iconic')
-        # time.sleep(10)
+        # ime.sleep(10)
+        
+
+    def focus_window(): # import to open window
+        root_window.wm_state('normal')
 
     #================== Creating Root Window =================================================#    
     root_window = tk.Tk()
@@ -66,29 +73,23 @@ def create_window(getReply):
     bg_lbl.place(x=6, y=6,height= 488, width= 388)
 
     # Inserting test avatar image
-    # img = 'chatbot\\images\\tes_image_2.png'
-    # img1 = p.Image.open(img)
-    # photo = ptk.PhotoImage(img1)
-    # image_lbl = tk.Label(frame1, image=photo)
-    # image_lbl.place(x=163, y=12, relwidth=0.3, relheight=0.3)
+    av_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0) # creating avatar border
+    av_bdr.place(x=124, y=19, height=202, width=152)
+    photo = Image.open('test_image.png') # importing the image
+    resize_img = photo.resize((200, 200), Image.LANCZOS) # resizing 
+    img = ImageTk.PhotoImage(resize_img)
+    av_lbl = tk.Label(frame1) # creating image label
+    av_lbl.image =img # saving reference of photo 
+    av_lbl.place(x=125, y=20, height=200, width=150) # placing the image label
+    av_lbl.configure(image=img) # setting the label to the image
 
+    
     # Submition button
     submit_btn = tk.Button(frame1, text='Submit',command=lambda:show_frame(frame2)) 
-    submit_btn.place(x=163, y=438, height=50, width=75)
+    submit_btn.place(x=163, y=438, height=30, width=75)
+    submit_btn.bind('<Return>', show_frame)
+    # submit_btn.focus()
     
-
-    # Email field - not needed
-    #email_txt = tk.Entry(frame1, bg="#333332", cursor="arrow")
-    #email_txt.place(x=100, y=373, height=18, width=200)
-    #email_lbl = tk.Label(frame1, text= "Gmail: ",bg='#333332')
-    #email_lbl.place(x=100, y=359, height=14)
-
-    # Passowrd field - not needed
-    #pass_txt = tk.Entry(frame1, bg="#333332", cursor="arrow", show= '*')
-    #pass_txt.place(x=100, y=409, height=18, width=200)
-    #pass_lbl = tk.Label(frame1, text= "Password: ",bg='#333332')
-    #pass_lbl.place(x=100, y=395, height=14)
-
     # Random avatar button
     rand_btn = tk.Button(frame1, text="Randomise!", bg='white')    
     rand_btn.place(x=163, y=300, height=50, width=75)
@@ -163,6 +164,7 @@ def create_window(getReply):
     message_window = Text(frame2, bg="#84CBEE", width=30, cursor="arrow", wrap=WORD, font= set_font)
     message_window.bind('<Return>', send)
     message_window.place(x=6, y=426, height=68, width=388)
+    
 
     #================== Window button code =========================================================#
     # main menu bar 
