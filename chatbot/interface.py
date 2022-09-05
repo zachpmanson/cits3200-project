@@ -1,7 +1,9 @@
 
 from tkinter import *
 import tkinter as tk
+from itertools import cycle
 from PIL import ImageTk, Image
+import python_avatars as pa
 import time 
 
 # outstanding UI issues
@@ -75,7 +77,7 @@ def create_window(getReply):
     # Inserting test avatar image
     av_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0) # creating avatar border
     av_bdr.place(x=124, y=19, height=202, width=152)
-    photo = Image.open('test_image.png') # importing the image
+    photo = Image.open('images/test_image.png') # importing the image
     resize_img = photo.resize((200, 200), Image.LANCZOS) # resizing 
     img = ImageTk.PhotoImage(resize_img)
     av_lbl = tk.Label(frame1) # creating image label
@@ -83,7 +85,6 @@ def create_window(getReply):
     av_lbl.place(x=125, y=20, height=200, width=150) # placing the image label
     av_lbl.configure(image=img) # setting the label to the image
 
-    
     # Submition button
     submit_btn = tk.Button(frame1, text='Submit',command=lambda:show_frame(frame2)) 
     submit_btn.place(x=163, y=438, height=30, width=75)
@@ -94,14 +95,106 @@ def create_window(getReply):
     rand_btn = tk.Button(frame1, text="Randomise!", bg='white')    
     rand_btn.place(x=163, y=300, height=50, width=75)
 
+    list_skin_color = cycle(['TANNED','YELLOW','PALE','LIGHT','BROWN','DARK_BROWN','BLACK'])
+    list_eye_type = cycle(['CLOSED', 'CRY', 'DEFAULT', 'EYE_ROLL', 'HAPPY', 'HEART', 'SIDE', 'SQUINT', 'SURPRISED', 'WINK_WACKY', 'WINK', 'X_DIZZY'])
+    list_top_type = cycle(['NONE', 'BIG_HAIR', 'BOB', 'BUN', 'CAESER_SIDE_PART', 'CAESER', 'CURLY', 'CURVY', 'DREADS', 'FRIDA', 'FRIZZLE', 'FRO_BAND', 'FRO', 'LONG_NOT_TOO_LONG', 'MIAC_WALLACE', 'SHAGGY_MULLET', 'SHAGGY', 'SHAVED_SIDES', 'SHORT_CURLY', 'SHORT_DREADS_1', 'SHORT_DREADS_2', 'SHORT_FLAT', 'SHORT_ROUND', 'SHORT_WAVED', 'SIDES', 'STRAIGHT_1', 'STRAIGHT_2', 'STRAIGHT_STRAND'])
+    list_mouth_type = cycle(['DEFAULT','CONCERNED','DISBELIEF','EATING','GRIMACE','SAD','SCREAM_OPEN','SERIOUS','SMILE','TONGUE','TWINKLE','VOMIT'])
+    list_accessories_type = cycle(['DEFAULT','KURT','PRESCRIPTION_01','PRESCRIPTION_02','ROUND','SUNGLASSES','WAYFARERS'])
+    list_clothe_type = cycle(['BLAZER_SHIRT','BLAZER_SWEATER','COLLAR_SWEATER','GRAPHIC_SHIRT','HOODIE','OVERALL','SHIRT_CREW_NECK','SHIRT_SCOOP_NECK','SHIRT_V_NECK'])
+
+    list_skin_colors = ['TANNED','YELLOW','PALE','LIGHT','BROWN','DARK_BROWN','BLACK']
+    list_eye_types = ['CLOSED', 'CRY', 'DEFAULT', 'EYE_ROLL', 'HAPPY', 'HEART', 'SIDE', 'SQUINT', 'SURPRISED', 'WINK_WACKY', 'WINK', 'X_DIZZY']
+    list_top_types = ['NONE', 'BIG_HAIR', 'BOB', 'BUN', 'CAESER_SIDE_PART', 'CAESER', 'CURLY', 'CURVY', 'DREADS', 'FRIDA', 'FRIZZLE', 'FRO_BAND', 'FRO', 'LONG_NOT_TOO_LONG', 'MIAC_WALLACE', 'SHAGGY_MULLET', 'SHAGGY', 'SHAVED_SIDES', 'SHORT_CURLY', 'SHORT_DREADS_1', 'SHORT_DREADS_2', 'SHORT_FLAT', 'SHORT_ROUND', 'SHORT_WAVED', 'SIDES', 'STRAIGHT_1', 'STRAIGHT_2', 'STRAIGHT_STRAND']
+    list_mouth_types = ['DEFAULT','CONCERNED','DISBELIEF','EATING','GRIMACE','SAD','SCREAM_OPEN','SERIOUS','SMILE','TONGUE','TWINKLE','VOMIT']
+    list_accessories_types = ['DEFAULT','KURT','PRESCRIPTION_01','PRESCRIPTION_02','ROUND','SUNGLASSES','WAYFARERS']
+    list_clothe_types = ['BLAZER_SHIRT','BLAZER_SWEATER','COLLAR_SWEATER','GRAPHIC_SHIRT','HOODIE','OVERALL','SHIRT_CREW_NECK','SHIRT_SCOOP_NECK','SHIRT_V_NECK']
+    
+    def change_skin(sk=0, ey=0, ha=0, mo=0, ac=0, sh=0):
+        skin = 'TANNED'
+        eyes = 'DEFAULT'
+        hair = 'NONE'
+        mouth = 'DEFAULT'
+        accessories = 'DEFAULT'
+        clothes = 'BLAZER_SHIRT'
+        
+        #Skin
+        if sk == 1:
+            skin = next(list_skin_color)
+        if sk == -1:
+            for i in range(len(list_skin_colors)-1):
+                skin = next(list_skin_color)
+        if sk == 0:
+            for i in range(len(list_skin_colors)):
+                skin = next(list_skin_color)
+
+        #Eyes
+        if ey == 1:
+            eyes = next(list_eye_type)
+        if ey == -1:
+            for i in range(len(list_eye_types)-1):
+                eyes = next(list_eye_type)
+        if ey == 0:
+            for i in range(len(list_eye_types)):
+                eyes = next(list_eye_type)
+        
+        #Hair
+        if ha == 1:
+            hair = next(list_top_type)
+        if ha == -1:
+            for i in range(len(list_top_types)-1):
+                hair = next(list_top_type)
+        if ha == 0:
+            for i in range(len(list_top_types)):
+                hair = next(list_top_type)
+        
+        #Mouth
+        if mo == 1:
+            mouth = next(list_mouth_type)
+        if mo == -1:
+            for i in range(len(list_mouth_types)-1):
+                mouth = next(list_mouth_type)
+        if mo == 0:
+            for i in range(len(list_mouth_types)):
+                mouth = next(list_mouth_type)
+        
+        #Accessories
+        if ac == 1:
+            accessories = next(list_accessories_type)
+        if ac == -1:
+            for i in range(len(list_accessories_types)-1):
+                accessories = next(list_accessories_type)
+        if ac == 0:
+            for i in range(len(list_accessories_types)):
+                accessories = next(list_accessories_type)
+        
+        #Clothes
+        if sh == 1:
+            clothes = next(list_clothe_type)
+        if sh == -1:
+            for i in range(len(list_clothe_types)-1):
+                clothes = next(list_clothe_type)
+        if sh == 0:
+            for i in range(len(list_clothe_types)):
+                clothes = next(list_clothe_type)
+        
+        my_avatar = pa.Avatar(
+            skin_color=eval('pa.SkinColor.%s' % skin),
+            eyes=eval('pa.EyeType.%s' % eyes),
+            top=eval('pa.HairType.%s' % hair),
+            mouth=eval('pa.MouthType.%s' % mouth),
+            accessory=eval('pa.AccessoryType.%s' % accessories),
+            clothing=eval('pa.ClothingType.%s' % clothes),
+        )
+        my_avatar.render("my_avatar.svg")
+    
     # Skin buttons & label
     skin_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0) # creating background border
     skin_bdr.place(x=49, y=349, height=42, width=77) # placing border
     skin_lbl = tk.Label(frame1, text="Skin", bg='white') # creating skin label
     skin_lbl.place(x=50, y=350, height=40, width=75) # placing skin label
-    skin_right_btn = tk.Button(frame1) # creating right button
+    skin_right_btn = tk.Button(frame1, command= lambda: change_skin(1, 0, 0, 0, 0, 0)) # creating right button
     skin_right_btn.place(x=131, y=370, height=10, width=20) # placing right button
-    skin_left_btn = tk.Button(frame1) # creating left button
+    skin_left_btn = tk.Button(frame1, command= lambda: change_skin(-1, 0, 0, 0, 0, 0)) # creating left button
     skin_left_btn.place(x=24, y=370, height=10, width=20) # placing right button
 
     # Eyes buttons & label
@@ -109,9 +202,9 @@ def create_window(getReply):
     eyes_bdr.place(x=49, y=293, height=42, width=77)
     eyes_lbl = tk.Label(frame1, text="Eyes", bg='white')
     eyes_lbl.place(x=50, y=294, height=40, width=75)
-    eyes_right_btn = tk.Button(frame1)
+    eyes_right_btn = tk.Button(frame1, command= lambda: change_skin(0, 1, 0, 0, 0, 0))
     eyes_right_btn.place(x=131, y=314, height=10, width=20)
-    eyes_left_btn = tk.Button(frame1)
+    eyes_left_btn = tk.Button(frame1, command= lambda: change_skin(0, -1, 0, 0, 0, 0))
     eyes_left_btn.place(x=24, y=314, height=10, width=20)
 
     # Hair buttons & label
@@ -119,19 +212,20 @@ def create_window(getReply):
     hair_bdr.place(x=49, y=237, height=42, width=77)
     hair_lbl = tk.Label(frame1, text="Hair", bg='white')
     hair_lbl.place(x=50, y=238, height=40, width=75)
-    hair_right_btn = tk.Button(frame1)
+    hair_right_btn = tk.Button(frame1, command= lambda: change_skin(0, 0, 1, 0, 0, 0))
     hair_right_btn.place(x=131, y=258, height=10, width=20)
-    hair_left_btn = tk.Button(frame1)
+    hair_left_btn = tk.Button(frame1, command= lambda: change_skin(0, 0, -1, 0, 0, 0))
     hair_left_btn.place(x=24, y=258, height=10, width=20)
+
 
     # Mouth buttons & label
     mouth_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
     mouth_bdr.place(x=274, y=349, height=42, width=77)
     mouth_lbl = tk.Label(frame1, text="Mouth", bg='white')
     mouth_lbl.place(x=275, y=350, height=40, width=75)
-    mouth_right_btn = tk.Button(frame1)
+    mouth_right_btn = tk.Button(frame1, command= lambda: change_skin(0, 0, 0, 1, 0, 0))
     mouth_right_btn.place(x=249, y=370, height=10, width=20)
-    mouth_left_btn = tk.Button(frame1)
+    mouth_left_btn = tk.Button(frame1, command= lambda: change_skin(0, 0, 0, -1, 0, 0))
     mouth_left_btn.place(x=356, y=370, height=10, width=20)
 
     # Accessories buttons & label
@@ -139,9 +233,9 @@ def create_window(getReply):
     acc_bdr.place(x=274, y=293, height=42, width=77)
     acc_lbl = tk.Label(frame1, text="Accessories", bg='white')
     acc_lbl.place(x=275, y=294, height=40, width=75)
-    acc_right_btn = tk.Button(frame1)
+    acc_right_btn = tk.Button(frame1, command= lambda: change_skin(0, 0, 0, 0, 1, 0))
     acc_right_btn.place(x=249, y=314, height=10, width=20)
-    acc_left_btn = tk.Button(frame1)
+    acc_left_btn = tk.Button(frame1, command= lambda: change_skin(0, 0, 0, 0, -1, 0))
     acc_left_btn.place(x=356, y=314, height=10, width=20)
 
     # Shirt buttons & label
@@ -149,9 +243,9 @@ def create_window(getReply):
     shirt_bdr.place(x=274, y=237, height=42, width=77)
     shirt_lbl = tk.Label(frame1, text="Shirt", bg='white')
     shirt_lbl.place(x=275, y=238, height=40, width=75)
-    shirt_right_btn = tk.Button(frame1)
+    shirt_right_btn = tk.Button(frame1, command= lambda: change_skin(0, 0, 0, 0, 0, 1))
     shirt_right_btn.place(x=249, y=258, height=10, width=20)
-    shirt_left_btn = tk.Button(frame1)
+    shirt_left_btn = tk.Button(frame1, command= lambda: change_skin(0, 0, 0, 0, 0, -1))
     shirt_left_btn.place(x=357, y=258, height=10, width=20)
 
     #================== Frame 2 - Chat bot UI code =================================================#
