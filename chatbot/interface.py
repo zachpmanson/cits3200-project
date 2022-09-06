@@ -5,6 +5,7 @@ from itertools import cycle
 from PIL import ImageTk, Image
 import python_avatars as pa
 import time 
+import cairosvg
 
 # outstanding UI issues
 # chat_window text formating, user and bot responses
@@ -77,7 +78,7 @@ def create_window(getReply):
     # Inserting test avatar image
     av_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0) # creating avatar border
     av_bdr.place(x=124, y=19, height=202, width=152)
-    photo = Image.open('images/test_image.png') # importing the image
+    photo = Image.open('my_avatar.png') # importing the image
     resize_img = photo.resize((200, 200), Image.LANCZOS) # resizing 
     img = ImageTk.PhotoImage(resize_img)
     av_lbl = tk.Label(frame1) # creating image label
@@ -186,7 +187,10 @@ def create_window(getReply):
             clothing=eval('pa.ClothingType.%s' % clothes),
         )
         my_avatar.render("my_avatar.svg")
+        cairosvg.svg2png(url="my_avatar.svg", write_to="my_avatar.png")
     
+
+
     # Skin buttons & label
     skin_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0) # creating background border
     skin_bdr.place(x=49, y=349, height=42, width=77) # placing border
