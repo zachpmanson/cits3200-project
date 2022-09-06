@@ -19,9 +19,11 @@ import cairosvg
 
 set_font = ("Roboto", 11) # setting font style and size
 
-def create_window(getReply):
+def create_window(getReply, account):
 
-
+    def submit_button():
+        account.login()
+        show_frame(frame2)
 
     # function to call frame swapping
     def show_frame(frame):
@@ -87,7 +89,7 @@ def create_window(getReply):
     av_lbl.configure(image=img) # setting the label to the image
 
     # Submition button
-    submit_btn = tk.Button(frame1, text='Submit',command=lambda:show_frame(frame2)) 
+    submit_btn = tk.Button(frame1, text='Submit',command=submit_button) 
     submit_btn.place(x=163, y=438, height=30, width=75)
     submit_btn.bind('<Return>', show_frame)
     # submit_btn.focus()

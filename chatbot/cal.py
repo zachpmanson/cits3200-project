@@ -12,7 +12,7 @@ CREDENTIALS_FILE = './credentials.json'
 
 class Calendar():
 
-    def __init__(self):
+    def login(self):
         creds = None
         # The file token.pickle stores the user's access and refresh tokens, and is
         # created automatically when the authorization flow completes for the first
@@ -101,6 +101,7 @@ class Calendar():
 
 if __name__ == '__main__':
     cal = Calendar()
+    cal.login()
     from pprint import pprint
     pprint(cal.get_calendar_list())
     pprint(cal.get_events())
