@@ -1,4 +1,6 @@
 
+from curses import has_colors
+from os import fchmod
 from tkinter import *
 import tkinter as tk
 from itertools import cycle
@@ -109,15 +111,23 @@ def create_window(getReply, account):
     list_mouth_type = cycle(['DEFAULT','CONCERNED','DISBELIEF','EATING','GRIMACE','SAD','SCREAM_OPEN','SERIOUS','SMILE','TONGUE','TWINKLE','VOMIT'])
     list_accessories_type = cycle(['NONE', 'KURT','ROUND','SUNGLASSES','WAYFARERS'])
     list_clothe_type = cycle(['BLAZER_SHIRT','BLAZER_SWEATER','COLLAR_SWEATER','GRAPHIC_SHIRT','HOODIE','OVERALL','SHIRT_CREW_NECK','SHIRT_SCOOP_NECK','SHIRT_V_NECK'])
-
+    list_facial_hair_type = cycle(['NONE', 'BEARD_LIGHT', 'BEARD_MAGESTIC', 'BEARD_MEDIUM', 'MOUSTACHE_FANCY', 'MOUSTACHE_MAGNUM'])
+    list_hair_color = cycle(['AUBURN', 'BLACK', 'BLONDE', 'BLONDE_GOLDEN', 'BROWN', 'BROWN_DARK', 'PASTEL_PINK', 'PLATINUM', 'RED','SILVER_GRAY'])
+    list_eyebrows_type = cycle(['NONE', 'ANGRY_NATURAL', 'ANGRY', 'DEFAULT_NATURAL', 'DEFAULT', 'FLAT_NATURAL', 'FROWN_NATURAL', 'RAISED_EXCITED_NATURAL', 'RAISED_EXCITED', 'SAD_CONCERNED_NATURAL', 'SAD_CONCERNED', 'UNIBROW_NATURAL', 'UP_DOWN_NATURAL', 'UP_DOWN'])
+    list_clothing_color = cycle(['BLACK', 'BLUE_01', 'BLUE_02', 'BLUE_03', 'GRAY_01', 'GRAY_2', 'HEATHER', 'PASTEL_BLUE', 'PASTEL_GREEN', 'PASTEL_ORANGE', 'PASTEL_YELLOW', 'PINK', 'RED', 'WHITE'])
+    
     list_skin_colors = ['TANNED','YELLOW','PALE','LIGHT','BROWN','DARK_BROWN','BLACK']
     list_eye_types = ['CLOSED', 'CRY', 'DEFAULT', 'EYE_ROLL', 'HAPPY', 'HEART', 'SIDE', 'SQUINT', 'SURPRISED', 'WINK_WACKY', 'WINK', 'X_DIZZY']
     list_top_types = ['NONE', 'BIG_HAIR', 'BOB', 'BUN', 'CURLY', 'CURVY', 'DREADS', 'FRIDA', 'FRIZZLE', 'FRO_BAND', 'FRO', 'LONG_NOT_TOO_LONG', 'SHAGGY_MULLET', 'SHAGGY', 'SHAVED_SIDES', 'SHORT_CURLY', 'SHORT_DREADS_1', 'SHORT_DREADS_2', 'SHORT_FLAT', 'SHORT_ROUND', 'SHORT_WAVED', 'SIDES', 'STRAIGHT_1', 'STRAIGHT_2', 'STRAIGHT_STRAND']
     list_mouth_types = ['DEFAULT','CONCERNED','DISBELIEF','EATING','GRIMACE','SAD','SCREAM_OPEN','SERIOUS','SMILE','TONGUE','TWINKLE','VOMIT']
     list_accessories_types = ['NONE', 'KURT','ROUND','SUNGLASSES','WAYFARERS']
     list_clothe_types = ['BLAZER_SHIRT','BLAZER_SWEATER','COLLAR_SWEATER','GRAPHIC_SHIRT','HOODIE','OVERALL','SHIRT_CREW_NECK','SHIRT_SCOOP_NECK','SHIRT_V_NECK']
-    
-    def change_skin(sk=0, ey=0, ha=0, mo=0, ac=0, sh=0):
+    list_facial_hair_types = ['NONE', 'BEARD_LIGHT', 'BEARD_MAGESTIC', 'BEARD_MEDIUM', 'MOUSTACHE_FANCY', 'MOUSTACHE_MAGNUM']
+    list_hair_colors = ['AUBURN', 'BLACK', 'BLONDE', 'BLONDE_GOLDEN', 'BROWN', 'BROWN_DARK', 'PASTEL_PINK', 'PLATINUM', 'RED','SILVER_GRAY']
+    list_eyebrows_types = ['NONE', 'ANGRY_NATURAL', 'ANGRY', 'DEFAULT_NATURAL', 'DEFAULT', 'FLAT_NATURAL', 'FROWN_NATURAL', 'RAISED_EXCITED_NATURAL', 'RAISED_EXCITED', 'SAD_CONCERNED_NATURAL', 'SAD_CONCERNED', 'UNIBROW_NATURAL', 'UP_DOWN_NATURAL', 'UP_DOWN']
+    list_clothing_colors = ['BLACK', 'BLUE_01', 'BLUE_02', 'BLUE_03', 'GRAY_01', 'GRAY_2', 'HEATHER', 'PASTEL_BLUE', 'PASTEL_GREEN', 'PASTEL_ORANGE', 'PASTEL_YELLOW', 'PINK', 'RED', 'WHITE']
+
+    def change_skin(sk=0, ey=0, ha=0, mo=0, ac=0, sh=0, fh=0, hc=0, eb=0, cc=0):
         skin = 'TANNED'
         eyes = 'DEFAULT'
         hair = 'NONE'
@@ -185,6 +195,46 @@ def create_window(getReply, account):
             for i in range(len(list_clothe_types)):
                 clothes = next(list_clothe_type)
         
+        #Clothe Colours
+        if cc == 1:
+            clothecolor = next(list_clothing_color)
+        if cc == -1:
+            for i in range(len(list_clothing_colors)-1):
+                clothecolor = next(list_clothing_color)
+        if cc == 0:
+            for i in range(len(list_clothing_colors)):
+                clothecolor = next(list_clothing_color)
+        
+        #Eyebrows
+        if eb == 1:
+            eyebrows = next(list_eyebrows_type)
+        if eb == -1:
+            for i in range(len(list_eyebrows_types)-1):
+                eyebrows = next(list_eyebrows_type)
+        if eb == 0:
+            for i in range(len(list_eyebrows_types)):
+                eyebrows = next(list_eyebrows_type)
+        
+        #Hair Color
+        if hc == 1:
+            haircolor = next(list_hair_color)
+        if hc == -1:
+            for i in range(len(list_hair_colors)-1):
+                haircolor = next(list_hair_color)
+        if hc == 0:
+            for i in range(len(list_hair_colors)):
+                haircolor = next(list_hair_color)
+        
+        #Facial Hair
+        if fh == 1:
+            facialhair = next(list_facial_hair_type)
+        if fh == -1:
+            for i in range(len(list_facial_hair_types)-1):
+                facialhair = next(list_facial_hair_type)
+        if fh == 0:
+            for i in range(len(list_facial_hair_types)):
+                facialhair = next(list_facial_hair_type)
+
         my_avatar = pa.Avatar(
             skin_color=eval('pa.SkinColor.%s' % skin),
             eyes=eval('pa.EyeType.%s' % eyes),
@@ -192,72 +242,119 @@ def create_window(getReply, account):
             mouth=eval('pa.MouthType.%s' % mouth),
             accessory=eval('pa.AccessoryType.%s' % accessories),
             clothing=eval('pa.ClothingType.%s' % clothes),
+            facial_hair=eval('pa.FacialHairType.%s' % facialhair),
+            hair_color=eval('pa.HairColor.%s' % haircolor),
+            eyebrows=eval('pa.EyebrowType.%s' % eyebrows),
+            clothing_color=eval('pa.ClothingColor.%s' % clothecolor),
         )
         my_avatar.render("my_avatar.svg")
         cairosvg.svg2png(url="my_avatar.svg", write_to="my_avatar.png")
     
     change_skin(0,0,0,0,0,0)
 
+    # Hair buttons & label
+    hair_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
+    hair_bdr.place(x=49, y=227, height=42, width=77)
+    hair_lbl = tk.Label(frame1, text="Hair", bg='white')
+    hair_lbl.place(x=50, y=228, height=40, width=75)
+    hair_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 1, 0, 0, 0, 0, 0, 0, 0), insert_img()])
+    hair_right_btn.place(x=131, y=243, height=10, width=20)
+    hair_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, -1, 0, 0, 0, 0, 0, 0, 0), insert_img()])
+    hair_left_btn.place(x=24, y=243, height=10, width=20)
+
+    # Hair Colour buttons & label
+    hair_col_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
+    hair_col_bdr.place(x=49, y=283, height=42, width=77)
+    hair_col_lbl = tk.Label(frame1, text="Hair Colour", bg='white')
+    hair_col_lbl.place(x=50, y=284, height=40, width=75)
+    hair_col_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 0, 0, 1, 0, 0), insert_img()])
+    hair_col_right_btn.place(x=131, y=299, height=10, width=20)
+    hair_col_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 0, 0, -1, 0, 0), insert_img()])
+    hair_col_left_btn.place(x=24, y=299, height=10, width=20)
+
     # Skin buttons & label
     skin_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0) # creating background border
-    skin_bdr.place(x=49, y=349, height=42, width=77) # placing border
+    skin_bdr.place(x=49, y=339, height=42, width=77) # placing border
     skin_lbl = tk.Label(frame1, text="Skin", bg='white') # creating skin label
-    skin_lbl.place(x=50, y=350, height=40, width=75) # placing skin label
-    skin_right_btn = tk.Button(frame1, command= lambda: [change_skin(1, 0, 0, 0, 0, 0), insert_img()]) # creating right button
-    skin_right_btn.place(x=131, y=370, height=10, width=20) # placing right button
-    skin_left_btn = tk.Button(frame1, command= lambda: [change_skin(-1, 0, 0, 0, 0, 0), insert_img()]) # creating left button
-    skin_left_btn.place(x=24, y=370, height=10, width=20) # placing right button
+    skin_lbl.place(x=50, y=340, height=40, width=75) # placing skin label
+    skin_right_btn = tk.Button(frame1, command= lambda: [change_skin(1, 0, 0, 0, 0, 0, 0, 0, 0, 0), insert_img()]) # creating right button
+    skin_right_btn.place(x=131, y=355, height=10, width=20) # placing right button
+    skin_left_btn = tk.Button(frame1, command= lambda: [change_skin(-1, 0, 0, 0, 0, 0, 0, 0, 0, 0), insert_img()]) # creating left button
+    skin_left_btn.place(x=24, y=355, height=10, width=20) # placing right button
 
     # Eyes buttons & label
     eyes_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
-    eyes_bdr.place(x=49, y=293, height=42, width=77)
+    eyes_bdr.place(x=49, y=395, height=42, width=77)
     eyes_lbl = tk.Label(frame1, text="Eyes", bg='white')
-    eyes_lbl.place(x=50, y=294, height=40, width=75)
-    eyes_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 1, 0, 0, 0, 0), insert_img()])
-    eyes_right_btn.place(x=131, y=314, height=10, width=20)
-    eyes_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, -1, 0, 0, 0, 0), insert_img()])
-    eyes_left_btn.place(x=24, y=314, height=10, width=20)
+    eyes_lbl.place(x=50, y=396, height=40, width=75)
+    eyes_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 1, 0, 0, 0, 0, 0, 0, 0, 0), insert_img()])
+    eyes_right_btn.place(x=131, y=411, height=10, width=20)
+    eyes_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, -1, 0, 0, 0, 0, 0, 0, 0, 0), insert_img()])
+    eyes_left_btn.place(x=24, y=411, height=10, width=20)
 
-    # Hair buttons & label
-    hair_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
-    hair_bdr.place(x=49, y=237, height=42, width=77)
-    hair_lbl = tk.Label(frame1, text="Hair", bg='white')
-    hair_lbl.place(x=50, y=238, height=40, width=75)
-    hair_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 1, 0, 0, 0), insert_img()])
-    hair_right_btn.place(x=131, y=258, height=10, width=20)
-    hair_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, -1, 0, 0, 0), insert_img()])
-    hair_left_btn.place(x=24, y=258, height=10, width=20)
-
-
-    # Mouth buttons & label
-    mouth_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
-    mouth_bdr.place(x=274, y=349, height=42, width=77)
-    mouth_lbl = tk.Label(frame1, text="Mouth", bg='white')
-    mouth_lbl.place(x=275, y=350, height=40, width=75)
-    mouth_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 1, 0, 0), insert_img()])
-    mouth_right_btn.place(x=249, y=370, height=10, width=20)
-    mouth_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, -1, 0, 0), insert_img()])
-    mouth_left_btn.place(x=356, y=370, height=10, width=20)
-
-    # Accessories buttons & label
-    acc_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
-    acc_bdr.place(x=274, y=293, height=42, width=77)
-    acc_lbl = tk.Label(frame1, text="Accessories", bg='white')
-    acc_lbl.place(x=275, y=294, height=40, width=75)
-    acc_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 1, 0), insert_img()])
-    acc_right_btn.place(x=249, y=314, height=10, width=20)
-    acc_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, -1, 0), insert_img()])
-    acc_left_btn.place(x=356, y=314, height=10, width=20)
+    # Eyebrows buttons & label
+    brows_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
+    brows_bdr.place(x=49, y=451, height=42, width=77)
+    brows_lbl = tk.Label(frame1, text="Eyebrows", bg='white')
+    brows_lbl.place(x=50, y=452, height=40, width=75)
+    brows_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 0, 0, 0, 1, 0), insert_img()])
+    brows_right_btn.place(x=131, y=467, height=10, width=20)
+    brows_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 0, 0, 0, -1, 0), insert_img()])
+    brows_left_btn.place(x=24, y=467, height=10, width=20)
 
     # Shirt buttons & label
     shirt_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
-    shirt_bdr.place(x=274, y=237, height=42, width=77)
+    shirt_bdr.place(x=274, y=227, height=42, width=77)
     shirt_lbl = tk.Label(frame1, text="Shirt", bg='white')
-    shirt_lbl.place(x=275, y=238, height=40, width=75)
-    shirt_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 1), insert_img()])
-    shirt_right_btn.place(x=249, y=258, height=10, width=20)
-    shirt_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, -1), insert_img()])
-    shirt_left_btn.place(x=357, y=258, height=10, width=20)
+    shirt_lbl.place(x=275, y=228, height=40, width=75)
+    shirt_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 1, 0, 0, 0, 0), insert_img()])
+    shirt_right_btn.place(x=249, y=243, height=10, width=20)
+    shirt_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, -1, 0, 0, 0, 0), insert_img()])
+    shirt_left_btn.place(x=357, y=243, height=10, width=20)
+    
+    # Accessories buttons & label
+    acc_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
+    acc_bdr.place(x=274, y=283, height=42, width=77)
+    acc_lbl = tk.Label(frame1, text="Accessories", bg='white')
+    acc_lbl.place(x=275, y=284, height=40, width=75)
+    acc_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 1, 0, 0, 0, 0, 0), insert_img()])
+    acc_right_btn.place(x=249, y=299, height=10, width=20)
+    acc_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, -1, 0, 0, 0, 0, 0), insert_img()])
+    acc_left_btn.place(x=356, y=299, height=10, width=20)
+
+    # Mouth buttons & label
+    mouth_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
+    mouth_bdr.place(x=274, y=339, height=42, width=77)
+    mouth_lbl = tk.Label(frame1, text="Mouth", bg='white')
+    mouth_lbl.place(x=275, y=340, height=40, width=75)
+    mouth_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 1, 0, 0, 0, 0, 0, 0), insert_img()])
+    mouth_right_btn.place(x=249, y=355, height=10, width=20)
+    mouth_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, -1, 0, 0, 0, 0, 0, 0), insert_img()])
+    mouth_left_btn.place(x=356, y=355, height=10, width=20)
+
+    # Clothing Colours buttons & label
+    nose_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
+    nose_bdr.place(x=274, y=395, height=42, width=77)
+    nose_lbl = tk.Label(frame1, text="Clothing Colour", bg='white')
+    nose_lbl.place(x=275, y=396, height=40, width=75)
+    nose_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 0, 0, 0, 0, 1), insert_img()])
+    nose_right_btn.place(x=249, y=411, height=10, width=20)
+    nose_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 0, 0, 0, 0, -1), insert_img()])
+    nose_left_btn.place(x=356, y=411, height=10, width=20)
+
+    # Facial Hair buttons & label
+    mouth_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
+    mouth_bdr.place(x=274, y=451, height=42, width=77)
+    mouth_lbl = tk.Label(frame1, text="Facial Hair", bg='white')
+    mouth_lbl.place(x=275, y=452, height=40, width=75)
+    mouth_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 0, 1, 0, 0, 0), insert_img()])
+    mouth_right_btn.place(x=249, y=467, height=10, width=20)
+    mouth_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 0, -1, 0, 0, 0), insert_img()])
+    mouth_left_btn.place(x=356, y=467, height=10, width=20)
+
+    
+
+    
 
     #================== Frame 2 - Chat bot UI code =================================================#
     # chat window
