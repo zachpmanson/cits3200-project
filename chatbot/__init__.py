@@ -1,5 +1,6 @@
 import interface 
 import cal
+import pyjokes
 
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
@@ -42,6 +43,8 @@ def getReply(msg):
         reply = translation.text
     elif ("what" in msg and "coming up" in msg):
         reply = "Here's what's coming up\n" + "\n".join([e["start"]+" "+e["summary"] for e in account.get_events()])
+    elif (msg.startswith("tell me a joke")):
+        reply = pyjokes.get_joke(language='en', category='neutral')
     elif(msg):
         reply = chatbot.get_response(msg)
     else:
