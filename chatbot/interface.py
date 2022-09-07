@@ -285,5 +285,6 @@ def create_window(getReply, account):
     return root_window
 
 if __name__=="__main__":
-    window = create_window(lambda x: "Placeholder reply funtion")
+    #window = create_window(lambda x: "Placeholder reply funtion")
+    window = create_window(lambda x: "Placeholder reply funtion", lambda x:x)
     window.mainloop()
