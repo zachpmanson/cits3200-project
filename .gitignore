@@ -5,3 +5,5 @@ __pycache__/
 cits3200/
 *token.pickle
 *credentials.json
+*my_avatar.png
+*my_avatar.svg
