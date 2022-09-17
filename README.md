@@ -26,6 +26,11 @@ pip install -r ./chatbot/requirements.txt
 python -m spacy download en
 ```
 
+Then you'll need to install dependencies for Cairo.
+
+Windows download: https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases ([direct download](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2022-01-04/gtk3-runtime-3.24.31-2022-01-04-ts-win64.exe))
+ 
+
 Important Dates
  - Sprint 1 due 5pm Wednesday 17th August (to client, copy to cssubmit, due 11:59pm)
  - Personal Relfection due 11:59pm Friday 19th August (to cssubmit)
