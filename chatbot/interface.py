@@ -1,6 +1,4 @@
 
-from curses import has_colors
-from os import fchmod
 from tkinter import *
 import tkinter as tk
 from itertools import cycle
