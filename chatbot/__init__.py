@@ -1,3 +1,5 @@
+import asyncio
+
 import interface 
 import cal
 import pyjokes
@@ -8,24 +10,6 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 import scraper
 import weather
 from googletrans import Translator
-
-chatbot = ChatBot("Bot1")
-conversation = [
-    "Hello",
-    "Hi there!",
-    "How are you doing?",
-    "I'm doing great.",
-    "That is good to hear",
-    "Thank you.",
-    "You're welcome."
-]
-
-trainer = ListTrainer(chatbot)
-trainer.train(conversation)
-trainer = ChatterBotCorpusTrainer(chatbot)
-trainer.train(
-    "chatterbot.corpus.english"
-)
 
 def getReply(msg):
     msg = msg.lower().strip()
@@ -52,7 +36,23 @@ def getReply(msg):
 
     return reply
 
+
 if __name__=="__main__":
+    chatbot = ChatBot("Bot1")
+    conversation = [
+        "Hello",
+        "Hi there!",
+        "How are you doing?",
+        "I'm doing great.",
+        "That is good to hear",
+        "Thank you.",
+        "You're welcome."
+    ]
+
+    trainer = ListTrainer(chatbot)
+    trainer.train(conversation)
+    trainer = ChatterBotCorpusTrainer(chatbot)
+    trainer.train("chatterbot.corpus.english")
     account = cal.Calendar()
     window = interface.create_window(getReply, account)
     window.mainloop()
