@@ -30,6 +30,12 @@ def create_window(getReply, account):
     # function to call frame swapping
     def show_frame(frame):
         frame.tkraise()
+    
+    # function to clear window on log out
+    def clear_chat_window():
+        chat_window.configure(state="normal")
+        chat_window.delete("1.0", END) # clears chat_window after msg is sent
+        chat_window.configure(state="disabled") # disables users for inputting directly into window
 
     # send message function for frame2
     def send(input):       
@@ -381,7 +387,7 @@ def create_window(getReply, account):
     # sub/dropdown menu - is this needed? unsure 
     file_menu = Menu(root_window)
     file_menu.add_command(label="Test 1") # un assigned menu
-    file_menu.add_command(label="Log Out",command=lambda:show_frame(frame1))  # calls return frame1 function
+    file_menu.add_command(label="Log Out",command=lambda:[show_frame(frame1), clear_chat_window()])  # calls return frame1 function
     file_menu.add_command(label="Hush Mode", command=lambda:hush()) # calls hush function
 
     # main menu widgets 
