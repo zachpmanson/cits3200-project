@@ -15,9 +15,6 @@ from os.path import exists
 # returning user cursor in message_window to correct position
 # figuring out hush function requirements
 # custom buttons, gui colour scheme
-# implement avatars to customisation buttons
-# binding return key to submit button
-# bot binds return key after visiting frame2 to frame1
 
 set_font = ("Roboto", 11) # setting default font style and size
 
@@ -46,7 +43,10 @@ def create_window(getReply, account):
 
     # send message function for frame2
     def send(input):       
-            msg = message_window.get("1.0", END).strip()
+        msg = message_window.get("1.0", END).strip()
+        if len(msg) == 0:
+            print("message_window is empty")
+        else:
             reply = getReply(msg)
             print(f"User: {msg}")
             print(f"Bot: {reply}")
