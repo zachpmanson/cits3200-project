@@ -19,11 +19,17 @@ from os.path import exists
 # binding return key to submit button
 # bot binds return key after visiting frame2 to frame1
 
-set_font = ("Roboto", 11) # setting font style and size
+set_font = ("Roboto", 11) # setting default font style and size
+
+bold_font = ("Roboto", 11, "bold") # change style to bold
 
 def create_window(getReply, account):
 
+#================== Defining Functions =================================================# 
+
+    # function to call google login and change to frame 2
     def submit_button():
+        message_window.bind('<Return>', send)
         account.login()
         show_frame(frame2)
 
@@ -34,6 +40,7 @@ def create_window(getReply, account):
     # function to clear window on log out
     def clear_chat_window():
         chat_window.configure(state="normal")
+        message_window.unbind('<Return>')
         chat_window.delete("1.0", END) # clears chat_window after msg is sent
         chat_window.configure(state="disabled") # disables users for inputting directly into window
 
@@ -44,23 +51,20 @@ def create_window(getReply, account):
             print(f"User: {msg}")
             print(f"Bot: {reply}")
             chat_window.configure(state="normal") # allows inserting into window
-            chat_window.insert(END, f"\nUser: {msg}")
+            chat_window.insert(END, f"\nUser \n{msg}\n")
             # time.sleep(1) test code
-            #chat_window.tag_configure("right", justify='right') # configures window to input text right alligned
-            #chat_window.tag_add("right", 1.0, "end")
-            chat_window.insert(END, f"\nBot: {reply}")
+            # chat_window.tag_configure("right", justify='right') # configures window to input text right alligned
+            # chat_window.tag_add("right", 50.50, "end")
+            chat_window.insert(END, f"\nAssistant \n{reply}\n")
             chat_window.configure(state="disabled") # disables users for inputting directly into window
-            chat_window.see(tk.END)
-            
+            chat_window.see(tk.END) # moves scroll bar to latest message location
             message_window.delete("1.0", END) # clears message_window after msg is sent
 
-    
     def hush(): 
-        print("Bot is now hushed")
+        print("Assistant is now hushed")
         root_window.wm_state('iconic')
-        # ime.sleep(10)
+        # time.sleep(10)
         
-
     def focus_window(): # import to open window
         root_window.wm_state('normal')
 
@@ -371,14 +375,11 @@ def create_window(getReply, account):
     chat_window.place(x=6, y=6, height= 414, width= 388)
     chat_window.configure(state="disabled") # disables users for inputting directly into window
     
-
-   
     # message window
     message_window = Text(frame2, bg="#84CBEE", width=30, cursor="arrow", wrap=WORD, font= set_font)
-    message_window.bind('<Return>', send)
+    # message_window.bind('<Return>', send)
     message_window.place(x=6, y=426, height=68, width=388)
     
-
     #================== Root Window buttons code =========================================================#
 
     # main menu bar 
