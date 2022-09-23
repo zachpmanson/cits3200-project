@@ -1,4 +1,5 @@
 
+from ctypes import resize
 from tkinter import *
 import tkinter as tk
 from itertools import cycle
@@ -8,14 +9,12 @@ import time
 # import cairosvg
 from os.path import exists
 
-
-
 # outstanding UI issues
 # chat_window text formating, user and bot responses
-# returning user cursor in message_window to correct position
 # figuring out hush function requirements
 # custom buttons, gui colour scheme
 
+#======================= Setting Fonts =================================================# 
 set_font = ("Roboto", 11) # setting default font style and size
 
 bold_font = ("Roboto", 11, "bold") # change style to bold
@@ -32,7 +31,8 @@ def create_window(getReply, account):
 
     # function to call frame swapping
     def show_frame(frame):
-        frame.tkraise()
+        message_window.configure(state="normal") # allows users to type into frame 2 message_window when frame 2 is called
+        frame.tkraise() # brings new frame to the front
     
     # function to clear window on log out
     def clear_chat_window():
@@ -40,12 +40,14 @@ def create_window(getReply, account):
         message_window.unbind('<Return>')
         chat_window.delete("1.0", END) # clears chat_window after msg is sent
         chat_window.configure(state="disabled") # disables users for inputting directly into window
+        message_window.configure(state="disabled") # disables users from typing into frame 2 while frame 1 is displayed
 
     # send message function for frame2
-    def send(input):       
-        msg = message_window.get("1.0", END).strip()
+    def send(input):      
+        msg = message_window.get("1.0", END).strip().lower()
         if len(msg) == 0:
             print("message_window is empty")
+            return 'break'  # stops the return key from starting new line in message_window
         else:
             reply = getReply(msg)
             print(f"User: {msg}")
@@ -56,9 +58,16 @@ def create_window(getReply, account):
             # chat_window.tag_configure("right", justify='right') # configures window to input text right alligned
             # chat_window.tag_add("right", 50.50, "end")
             chat_window.insert(END, f"\nAssistant \n{reply}\n")
+            if (msg.startswith("where is")):
+                global map_image 
+                map_image = PhotoImage(file='map_sc.png') # importing the image, need to add image resizing
+                chat_window.image_create(END, image=map_image)
+            else:
+                print("\n")
             chat_window.configure(state="disabled") # disables users for inputting directly into window
             chat_window.see(tk.END) # moves scroll bar to latest message location
             message_window.delete("1.0", END) # clears message_window after msg is sent
+            return 'break'  # stops the return key from starting new line in message_window
 
     def hush(): 
         print("Assistant is now hushed")

@@ -17,6 +17,8 @@ def getReply(msg):
         reply = "Hello, how are you?"
     elif (msg == "bye"):
         reply = "Goodbye"
+    elif len(msg) <=4 :
+        reply = "Please elaborate!"
     elif ("search" in msg):
         reply = scraper.google_search(msg.replace("search ", ""))
     elif ("what" in msg and "weather" in msg):
@@ -25,6 +27,8 @@ def getReply(msg):
         translator = Translator()
         translation = translator.translate(msg.replace("translate ", ""))
         reply = translation.text
+    elif (msg.startswith("where is")): # dantem use this 
+        reply = "The closest result is here: "
     elif ("what" in msg and "coming up" in msg):
         reply = "Here's what's coming up\n" + "\n".join([e["start"]+" "+e["summary"] for e in account.get_events()])
     elif (msg.startswith("tell me a joke")):
