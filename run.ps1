@@ -4,3 +4,4 @@
 . .\venv\Scripts\activate
 cd chatbot
 python __init__.py
+cd ..
