@@ -1,5 +1,6 @@
 import asyncio
-
+from datetime import datetime, timedelta
+import time
 import interface 
 import cal
 import pyjokes
@@ -12,28 +13,72 @@ import weather
 from googletrans import Translator
 
 def getReply(msg):
-    msg = msg.lower().strip()
-    if (msg == "hi"):
+    msg = msg.strip()
+    lowermsg = msg.lower()
+    if (lowermsg == "hi"):
         reply = "Hello, how are you?"
-    elif (msg == "bye"):
+    elif (lowermsg == "bye"):
         reply = "Goodbye"
-    elif len(msg) <=4 :
+    elif len(lowermsg) <=4 :
         reply = "Please elaborate!"
-    elif ("search" in msg):
+    elif ("search" in lowermsg):
         reply = scraper.google_search(msg.replace("search ", ""))
-    elif ("what" in msg and "weather" in msg):
-        reply = weather.weather(msg)
-    elif (msg.startswith("translate")):
+    elif ("what" in lowermsg and "weather" in lowermsg):
+        reply = weather.weather(lowermsg)
+    elif (lowermsg.startswith("translate")):
         translator = Translator()
-        translation = translator.translate(msg.replace("translate ", ""))
+        translation = translator.translate(lowermsg.replace("translate ", ""))
         reply = translation.text
-    elif (msg.startswith("where is")): # dantem use this 
+    elif (lowermsg.startswith("where is")): # dantem use this 
         reply = "The closest result is here: "
-    elif ("what" in msg and "coming up" in msg):
+    elif ("what" in lowermsg and "coming up" in lowermsg):
         reply = "Here's what's coming up\n" + "\n".join([e["start"]+" "+e["summary"] for e in account.get_events()])
-    elif (msg.startswith("tell me a joke")):
+    elif (lowermsg.startswith("add to calendar")):
+        # add to calendar meeting with yulia today at 16:00 
+        # add to calendar meeting with yulia on Sep 20 at 16:00
+        time = None
+        if (" on " in lowermsg):
+            parts = msg[16:].split(" on ")
+            name = parts[0]
+            try:
+                time = datetime.strptime(parts[1], "%b %d at %H:%M")
+                time = time.replace(year=datetime.now().year) # defaults to current year
+                if time < datetime.now():
+                    time = time.replace(year=datetime.now().year+1) # if already occured, add to next year
+                
+            except ValueError:
+                reply = "Couldn't understand the date! Please try again"
+        elif ("today" in lowermsg):
+            parts = msg[16:].split(" today at ")
+            name = parts[0]
+            try:
+                time = datetime.strptime(parts[1], "%H:%M")
+                now = datetime.now()
+                time = time.replace(year=now.year, month=now.month, day=now.day)
+            except ValueError:
+                reply = "Couldn't understand the date! Please try again"
+        elif ("tomorrow" in lowermsg):
+            parts = msg[16:].split(" tomorrow at ")
+            name = parts[0]
+            try:
+                time = datetime.strptime(parts[1], "%H:%M")
+                now = datetime.now()
+                time = time.replace(year=now.year, month=now.month, day=now.day)
+                time = time + timedelta(days=1)
+            except ValueError:
+                reply = "Couldn't understand the date! Please try again"
+
+        if (time != None):
+            account.create_event(
+                title=name,
+                desc="",
+                start=time.isoformat(),
+                end=(time+timedelta(hours=1)).isoformat()
+            )
+            reply = f"Added '{name}' to calendar on {time.isoformat()}"
+    elif (lowermsg.startswith("tell me a joke")):
         reply = pyjokes.get_joke(language='en', category='neutral')
-    elif(msg):
+    elif(lowermsg):
         reply = chatbot.get_response(msg)
     else:
         reply = "I do not understand"

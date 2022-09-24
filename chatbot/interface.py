@@ -44,7 +44,7 @@ def create_window(getReply, account):
 
     # send message function for frame2
     def send(input):      
-        msg = message_window.get("1.0", END).strip().lower()
+        msg = message_window.get("1.0", END).strip()
         if len(msg) == 0:
             print("message_window is empty")
             return 'break'  # stops the return key from starting new line in message_window
