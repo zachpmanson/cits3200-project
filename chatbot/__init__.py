@@ -5,12 +5,15 @@ import interface
 import cal
 import pyjokes
 
+
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 from chatterbot.trainers import ChatterBotCorpusTrainer
 import scraper
 import weather
 from googletrans import Translator
+from better_profanity import profanity
+
 
 def getReply(msg):
     msg = msg.strip()
@@ -19,7 +22,9 @@ def getReply(msg):
         reply = "Hello, how are you?"
     elif (lowermsg == "bye"):
         reply = "Goodbye"
-    elif len(lowermsg) <=4 :
+    elif (profanity.contains_profanity(msg)):
+        reply = "The language you've used is offesnive or inappropriate for discussion. Please ask something else."
+    elif len(msg) <=4 :
         reply = "Please elaborate!"
     elif ("search" in lowermsg):
         reply = scraper.google_search(msg.replace("search ", ""))
@@ -78,7 +83,9 @@ def getReply(msg):
             reply = f"Added '{name}' to calendar on {time.isoformat()}"
     elif (lowermsg.startswith("tell me a joke")):
         reply = pyjokes.get_joke(language='en', category='neutral')
-    elif(lowermsg):
+    elif ( "visa" in msg or "password" in msg or "mastercard" in msg or "PIN" in msg or "american express" in msg or  "bank account" in msg or "credit card" in msg or "debit card" in msg):
+        reply = "Watch out! The topic you're trying to discuss contains some personal and private information. Let's talk about something else."
+    elif(msg):
         reply = chatbot.get_response(msg)
     else:
         reply = "I do not understand"
