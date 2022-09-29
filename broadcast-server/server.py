@@ -69,7 +69,7 @@ trainer.train("chatterbot.corpus.english")
 
 nconnections = 0
 # Default values
-port = 8765
+port = 8888
 addr = "0.0.0.0"
 # Bind the socket to a port
 s.bind((addr, port))
