@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 import time
 import interface 
 import cal
-import pyjokes
 import jokes
 import struct
 import scraper
@@ -71,7 +70,10 @@ def getReply(msg):
         reply = "The closest result is here: "
     elif (lowermsg.startswith("get contact ")):
         people = account.get_contact(lowermsg[11:])
-        reply = f"{people['name']}\n{people['email']}\n{people['phone']}"
+        if people == None:
+            reply = "Couldn't find contact"
+        else:
+            reply = f"{people['name']}\n{people['email']}\n{people['phone']}"
     elif ("what" in lowermsg and "coming up" in lowermsg):
         reply = "Here's what's coming up\n" + "\n".join([e["start"]+" "+e["summary"] for e in account.get_events()])
     elif (lowermsg.startswith("add to calendar")):
