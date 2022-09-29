@@ -4,7 +4,7 @@ import time
 import interface 
 import cal
 import pyjokes
-
+import jokes
 
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
@@ -81,7 +81,11 @@ def getReply(msg):
                 end=(time+timedelta(hours=1)).isoformat()
             )
             reply = f"Added '{name}' to calendar on {time.isoformat()}"
-    elif (lowermsg.startswith("tell me a joke")):
+    elif ("joke" in lowermsg ):
+        if ("dad" in lowermsg):
+            reply = jokes.obtain_joke('dadjokes')
+        else: reply = "" 
+    elif (lowermsg.startswith("tell me a computing joke")):
         reply = pyjokes.get_joke(language='en', category='neutral')
     elif ( "visa" in msg or "password" in msg or "mastercard" in msg or "PIN" in msg or "american express" in msg or  "bank account" in msg or "credit card" in msg or "debit card" in msg):
         reply = "Watch out! The topic you're trying to discuss contains some personal and private information. Let's talk about something else."
