@@ -42,6 +42,7 @@ def force_recv_all(sock, msg_len):
 
 # Checks to see if the "-v" flag was used
 optlist, args = getopt.getopt(sys.argv[1:], "v")
+verbose = False
 for opt in optlist:
     if opt[0] == "-v":
         verbose = True
