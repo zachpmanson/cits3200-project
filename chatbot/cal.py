@@ -126,7 +126,7 @@ class Calendar():
             query = query,
             readMask = "names"
         ).execute()
-
+        if search_results.get("results") == None: return None
         resourcesname = search_results["results"][0]["person"]["resourceName"]
         person = self.peopleservice.people().get(
             resourceName = resourcesname,
