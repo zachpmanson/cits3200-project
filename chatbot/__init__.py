@@ -36,6 +36,9 @@ def getReply(msg):
         reply = translation.text
     elif (lowermsg.startswith("where is")): # dantem use this 
         reply = "The closest result is here: "
+    elif (lowermsg.startswith("get contact ")):
+        people = account.get_contact(lowermsg[11:])
+        reply = f"{people['name']}\n{people['email']}\n{people['phone']}"
     elif ("what" in lowermsg and "coming up" in lowermsg):
         reply = "Here's what's coming up\n" + "\n".join([e["start"]+" "+e["summary"] for e in account.get_events()])
     elif (lowermsg.startswith("add to calendar")):
