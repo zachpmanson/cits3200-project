@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-cd /root/bot-broadcaster/
+cd /root/cits3200-project/broadcast-server/
 source ./venv/bin/activate
 python3 server.py
