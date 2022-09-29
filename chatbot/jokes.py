@@ -39,7 +39,7 @@ adultjokes = [
     "My senior relatives liked to tease me at weddings, saying things like, “You’ll be next!” They stopped once I started doing the same to them at funerals.",
     "Son: Dad, did you get the results of the DNA test back? Dad: Call me George.",
     "If you were born in September, it's pretty safe to assume that your parents started their new year with a bang.",
-    "Option 1: Let’s eat grandma. Option 2: Let’s eat, grandma. There you have it. Proof that punctuation saves lives.",
+    "Option 1: Let’s eat grandma. \n Option 2: Let’s eat, grandma. \n There you have it. Proof that punctuation saves lives.",
     "When does a joke become a dad joke? When it leaves you and never comes back.",
     "I bought my blind friend a cheese grater for his birthday. He later told me it was the most violent book he’d ever read.",
     "I tried to warn my son about playing Russian roulette. It went in one ear and out the other.",
@@ -57,38 +57,54 @@ adultjokes = [
     "They say there’s a person capable of murder in every friendship group. I suspected it was Dave, so I killed him before he could cause any harm.",
     ]
 
-riddles = [ "What has to be broken before you can use it? Answer: An egg",
-"I’m tall when I’m young, and I’m short when I’m old. What am I? Answer: A candle",
-"What month of the year has 28 days? Answer: All of them",
-"What is full of holes but still holds water? Answer: A sponge",
-"What question can you never answer yes to? Answer: Are you asleep yet?",
-"What is always in front of you but can’t be seen? Answer: The future",
-"There’s a one-story house in which everything is yellow. Yellow walls, yellow doors, yellow furniture. What color are the stairs? Answer:There aren’t any—it’s a one-story house.",
-"What can you break, even if you never pick it up or touch it?Answer: A promise",
-"What goes up but never comes down? Answer: Your age",
-"What gets wet while drying? Answer: A towel",
-"I shave every day, but my beard stays the same. What am I? Answer: A barber",
-"You see a boat filled with people, yet there isn’t a single person on board. How is that possible? Answer: All the people on the boat are married.",
-"I have branches, but no fruit, trunk or leaves. What am I? Answer: A bank",
-"Two fathers and two sons are in a car, yet there are only three people in the car. How? Answer: They are a grandfather, father and son.",
-"",
-"",
-"",
-"",
-"",
+riddles = [ 
+    "What has to be broken before you can use it?\nAnswer: An egg",
+    "I’m tall when I’m young, and I’m short when I’m old. What am I?\nAnswer: A candle",
+    "What month of the year has 28 days?\nAnswer: All of them",
+    "What is full of holes but still holds water?\nAnswer: A sponge",
+    "What question can you never answer yes to?\nAnswer: Are you asleep yet?",
+    "What is always in front of you but can’t be seen?\nAnswer: The future",
+    "There’s a one-story house in which everything is yellow. Yellow walls, yellow doors, yellow furniture. What color are the stairs?\nAnswer:There aren’t any—it’s a one-story house.",
+    "What can you break, even if you never\npick it up or touch it?\nAnswer: A promise",
+    "What goes up but never comes down?\nAnswer: Your age",
+    "What gets wet while drying?\nAnswer: A towel",
+    "I shave every day, but my beard stays the same. What am I?\nAnswer: A barber",
+    "You see a boat filled with people, yet there isn’t a single person on board. How is that possible?\nAnswer: All the people on the boat are married.",
+    "I have branches, but no fruit, trunk or leaves. What am I?\nAnswer: A bank",
+    "Two fathers and two sons are in a car, yet there are only three people in the car. How?\nAnswer: They are a grandfather, father and son.",
+    "What is so fragile that saying its name breaks it?\nAnswer: Silence.",
+    "What can run but never walks, has a mouth but never talks, has a head but never weeps, has a bed but never sleeps?\nAnswer: A river",
+    "I have cities, but no houses. I have mountains, but no trees. I have water, but no fish. What am I?\nAnswer: A map. Don’t forget to bookmark these Thanksgiving riddles and see how many you can solve.",
+    "A girl has as many brothers as sisters, but each brother has only half as many brothers as sisters. How many brothers and sisters are there in the family?\nAnswer: Four sisters and three brothers.",
+    "Walk on the living, they don't even mumble. Walk on the dead, they mutter and grumble. What are they?\nAnswer: Leaves",
+    "I’m light as a feather, yet the strongest person can’t hold me for five minutes. What am I?\nAnswer: Your breath",
+    "What do you answer even though it never asks you questions?\nAnswer: Leaves",
+    "Strip the skin under my skin, and my flesh you’ll reveal. It tastes sweet and tart, now throw out the peel. What is it?\nAnswer: Orange",
+    "What building has the most stories?\nAnswer: A library",
+    "Who has married many women but was never married?\nAnswer: The priest",
+    "What is it that given one, you’ll have either two or none?\nAnswer: A choice.",
+    ]
 
 
-]
+knock_knock = [
+    "Knock! Knock!\nWho's there?\nMikey.\nMikey who?\nMikey isn't working, can you let me in? ",
+    "Knock! Knock!\nWho's there?\nScold.\nScold who?\nScold outside, let me in!",
+    "Knock! Knock!\nWho's there?\nNeedle.\nNeedle who?\nNeedle little help getting in the door",
+    "Knock! Knock!\nWho's there?\nDejav.\nDejav who?\nKnock! Knock!",
+    "Knock! Knock!\nWho's there?\nHike.\nHike who?\nI didn't know you liked Japanese poetry!", 
+    ]
 
 all_jokes = {
     'dadjokes': dadjokes,
     'adultjokes': adultjokes,
+    'riddle': riddles,
+    'knock_knock': knock_knock,
 }
 
 class typeofjokeNotFoundError(Exception):
     pass
 
-def gets_jokes(categoryofjoke='dadjokes'):
+def gets_jokes(categoryofjoke):
     if categoryofjoke not in all_jokes:
         raise typeofjokeNotFoundError('The category of joke %s was not found' % (categoryofjoke))
     return all_jokes[categoryofjoke]
@@ -96,5 +112,4 @@ def gets_jokes(categoryofjoke='dadjokes'):
 def obtain_joke(categoryofjoke):
     all_jokes = gets_jokes(categoryofjoke)
     return random.choice(all_jokes)
-
 

@@ -3,48 +3,16 @@ from datetime import datetime, timedelta
 import time
 import interface 
 import cal
+import pyjokes
 import jokes
-import struct
+
+from chatterbot import ChatBot
+from chatterbot.trainers import ListTrainer
+from chatterbot.trainers import ChatterBotCorpusTrainer
 import scraper
 import weather
-import socket
 from googletrans import Translator
 from better_profanity import profanity
-
-# Sends packed big endian message 
-def send_msg(sock, msg):
-    if type(msg) == bytes:
-        packed_msg = struct.pack('>I', len(msg)) + msg
-    else:
-        packed_msg = struct.pack('>I', len(msg)) + msg.encode()
-    sock.send(packed_msg)
-
-# Receives a packed bid endian message from a socket
-def recv_msg(sock):
-    packed_msg_len = force_recv_all(sock, 4)
-    if not packed_msg_len:
-        return None
-    msg_len = struct.unpack('>I', packed_msg_len)[0]
-    recved_data = force_recv_all(sock, msg_len)
-    return recved_data
-
-# Ensures that all the bytes we want to read on receival are read
-def force_recv_all(sock, msg_len):
-    all_data = bytearray()
-    while len(all_data) < msg_len:
-        packet = sock.recv(msg_len - len(all_data))
-        if not packet:
-            return None
-        all_data.extend(packet)
-    return all_data
-
-def get_chatbot_reply(msg):
-    s = socket.socket()
-    s.connect(("cits3200api.zachmanson.com",8888))
-    send_msg(s, msg)
-    data = recv_msg(s)
-    reply = data.decode("utf-8")
-    return reply
 
 
 def getReply(msg):
@@ -70,10 +38,7 @@ def getReply(msg):
         reply = "The closest result is here: "
     elif (lowermsg.startswith("get contact ")):
         people = account.get_contact(lowermsg[11:])
-        if people == None:
-            reply = "Couldn't find contact"
-        else:
-            reply = f"{people['name']}\n{people['email']}\n{people['phone']}"
+        reply = f"{people['name']}\n{people['email']}\n{people['phone']}"
     elif ("what" in lowermsg and "coming up" in lowermsg):
         reply = "Here's what's coming up\n" + "\n".join([e["start"]+" "+e["summary"] for e in account.get_events()])
     elif (lowermsg.startswith("add to calendar")):
@@ -122,13 +87,19 @@ def getReply(msg):
     elif ("joke" in lowermsg ):
         if ("dad" in lowermsg):
             reply = jokes.obtain_joke('dadjokes')
+        elif("adult" in lowermsg):
+            reply = jokes.obtain_joke('adultjokes')
+        elif("knock knock" in lowermsg):
+            reply = jokes.obtain_joke('knock_knock')
         else: reply = "" 
     elif (lowermsg.startswith("tell me a computing joke")):
         reply = pyjokes.get_joke(language='en', category='neutral')
+    elif ("riddle" in lowermsg):
+        reply = jokes.obtain_joke('riddle')
     elif ( "visa" in msg or "password" in msg or "mastercard" in msg or "PIN" in msg or "american express" in msg or  "bank account" in msg or "credit card" in msg or "debit card" in msg):
         reply = "Watch out! The topic you're trying to discuss contains some personal and private information. Let's talk about something else."
     elif(msg):
-        reply = get_chatbot_reply(msg)
+        reply = chatbot.get_response(msg)
     else:
         reply = "I do not understand"
 
@@ -136,6 +107,21 @@ def getReply(msg):
 
 
 if __name__=="__main__":
+    chatbot = ChatBot("Bot1")
+    conversation = [
+        "Hello",
+        "Hi there!",
+        "How are you doing?",
+        "I'm doing great.",
+        "That is good to hear",
+        "Thank you.",
+        "You're welcome."
+    ]
+
+    trainer = ListTrainer(chatbot)
+    trainer.train(conversation)
+    trainer = ChatterBotCorpusTrainer(chatbot)
+    trainer.train("chatterbot.corpus.english")
     account = cal.Calendar()
     window = interface.create_window(getReply, account)
     window.mainloop()
