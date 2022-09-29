@@ -1,17 +1,7 @@
-
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-
+import webbrowser
 def launchBrowser():
-
-    option = webdriver.ChromeOptions()
-    option.add_experimental_option("detach", True)
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=option)
-    
-    driver.get('https://research-repository.uwa.edu.au/en/persons/yulia-shiikha')
-    
-    return driver
+    url = "https://research-repository.uwa.edu.au/en/persons/yulia-shiikha"
+    webbrowser.open_new_tab(url)
         
 if __name__ == "__main__":    
-    driver = launchBrowser()
+    launchBrowser()
