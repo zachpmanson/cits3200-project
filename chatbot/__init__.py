@@ -40,9 +40,14 @@ def force_recv_all(sock, msg_len):
 
 def get_chatbot_reply(msg):
     s = socket.socket()
-    s.connect(("cits3200api.zachmanson.com",8888))
+    try:
+        # s.connect(("cits3200api.zachmanson.com",8888))
+        s.connect(("localhost",8888))
+    except (TimeoutError, ConnectionRefusedError):
+        return "Couldn't connect to bot"
     send_msg(s, msg)
     data = recv_msg(s)
+    s.close()
     reply = data.decode("utf-8")
     return reply
 

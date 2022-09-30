@@ -25,7 +25,10 @@ def recv_msg(sock):
     packed_msg_len = force_recv_all(sock, 4)
     if not packed_msg_len:
         return None
-    msg_len = struct.unpack('>I', packed_msg_len)[0]
+    try:
+        msg_len = struct.unpack('>I', packed_msg_len)[0]
+    except struct.error:
+        raise Exception("struct error")
     recved_data = force_recv_all(sock, msg_len)
     return recved_data
 
@@ -93,14 +96,18 @@ try:
         if connection is not None:
             nconnections +=1
             if verbose: print(f"Got connection {nconnections} from {addr}")
-           
-            received_data = recv_msg(connection).decode()
+            try:
+                received_data = recv_msg(connection).decode()
+            except (Exception):
+                if verbose: print("\tClosing connection")
+                connection.close()
+                continue
             if verbose: print("\t<--",received_data)
-            
             reply = chatbot.get_response(received_data)
             if verbose: print("\t-->",reply)
             send_msg(connection, str(reply))
             
+            if verbose: print("\tClosing connection")
             connection.close()
 
 # To close the server ("^C")
