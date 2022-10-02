@@ -8,6 +8,7 @@ import struct
 import scraper
 import weather
 import socket
+import pyjokes
 from googletrans import Translator
 from better_profanity import profanity
 
@@ -127,9 +128,15 @@ def getReply(msg):
     elif ("joke" in lowermsg ):
         if ("dad" in lowermsg):
             reply = jokes.obtain_joke('dadjokes')
+        elif("adult" in lowermsg):
+            reply = jokes.obtain_joke('adultjokes')
+        elif("knock knock" in lowermsg):
+            reply = jokes.obtain_joke('knock_knock')
         else: reply = "" 
     elif (lowermsg.startswith("tell me a computing joke")):
         reply = pyjokes.get_joke(language='en', category='neutral')
+    elif ("riddle" in lowermsg):
+        reply = jokes.obtain_joke('riddle')
     elif ( "visa" in msg or "password" in msg or "mastercard" in msg or "PIN" in msg or "american express" in msg or  "bank account" in msg or "credit card" in msg or "debit card" in msg):
         reply = "Watch out! The topic you're trying to discuss contains some personal and private information. Let's talk about something else."
     elif(msg):
