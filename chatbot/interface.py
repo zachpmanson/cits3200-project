@@ -47,8 +47,6 @@ def create_window(getReply, account):
 
     # send message function for frame2
     def send(input):    
-        # thread_1 = threading.Thread(target=send)
-        # thread_1.start()  
         msg = message_window.get("1.0", END).strip()
         if len(msg) == 0:
             print("message_window is empty")
@@ -272,7 +270,7 @@ def create_window(getReply, account):
     change_skin(0,0,0,0,0,0)
 
 #================== Frame 1 - Button creation code ======================================================#
-
+    # button_right = PhotoImage(file="chatbot\\button_right.png")
     # Hair buttons & label
     hair_bdr = tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
     hair_bdr.place(x=49, y=227, height=42, width=77)
@@ -356,7 +354,7 @@ def create_window(getReply, account):
     # Clothing Colours buttons & label
     nose_bdr = tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
     nose_bdr.place(x=274, y=380, height=42, width=77)
-    nose_lbl = tk.Label(frame1, text="Clothing Colour", bg='white')
+    nose_lbl = tk.Label(frame1, text="Clothing Colour", bg='white', wraplength=50, justify='center')
     nose_lbl.place(x=275, y=381, height=40, width=75)
     nose_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 0, 0, 0, 0, 1), insert_img()])
     nose_right_btn.place(x=249, y=396, height=10, width=20)
