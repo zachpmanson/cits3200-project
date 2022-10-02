@@ -8,6 +8,7 @@ import struct
 import scraper
 import weather
 import socket
+import pyjokes
 from googletrans import Translator
 from better_profanity import profanity
 import random
