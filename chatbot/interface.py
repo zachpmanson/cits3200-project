@@ -3,6 +3,7 @@ from ctypes import resize
 from tkinter import *
 import tkinter as tk
 from itertools import cycle
+import tkinter
 from PIL import ImageTk, Image
 import python_avatars as pa
 import time 
@@ -45,6 +46,10 @@ def create_window(getReply, account):
         chat_window.configure(state="disabled") # disables users for inputting directly into window
         message_window.configure(state="disabled") # disables users from typing into frame 2 while frame 1 is displayed
 
+    def chat_window_state():
+        message_window.configure(state="normal")
+        message_window.bind('<Return>', send)
+
     # send message function for frame2
     def send(input):    
         msg = message_window.get("1.0", END).strip()
@@ -82,7 +87,7 @@ def create_window(getReply, account):
 
     #================== Creating Root Window =================================================#    
     root_window = tk.Tk()
-    root_window.title("Chat Bot v0.2") # window name
+    root_window.title("Chatter-Bot V.1.0") # window name
     root_window.geometry("400x500+50+50") # dimensions + Location; Width x Height + x + y axis
     root_window.resizable(width=False, height=False) # disable window resize
     root_window.rowconfigure(0, weight=1) # configuring window rows
@@ -384,22 +389,63 @@ def create_window(getReply, account):
 
     # chat window
     chat_window = Text(frame2, bd=1, bg="#84CBEE", width =50, height = 8, cursor="arrow", wrap=WORD, font= set_font)
-    chat_window.place(x=6, y=6, height= 414, width= 388)
+    chat_window.place(x=6, y=72, height= 342, width= 388)
     chat_window.configure(state="disabled") # disables users for inputting directly into window
     
     # message window
     message_window = Text(frame2, bg="#84CBEE", width=30, cursor="arrow", wrap=WORD, font= set_font)
-    # message_window.bind('<Return>', send)
-    message_window.place(x=6, y=426, height=68, width=388)
+    message_window.place(x=6, y=426, height=66, width=388)
+
+    #================== Frame 2 - Display Avatar =================================================#
+
+    # top frame righthand side LONG
+    filler_frame= tk.Frame(frame2, highlightbackground = "black", highlightthickness = 2, bd=0)
+    filler_frame.place(x=68, y=6, width=325, height= 65)
+
+    # top frame lefthand side SHORT
+    top_frame = tk.Frame(frame2, highlightbackground = "black", highlightthickness = 2, bd=0)
+    top_frame.place(x=6, y=6, width=66, height=65)
+
+    # contains circle1 image within top_frame
+    top_label = Label(frame2, bg="#84CBEE")
+    top_label.place(x=7, y=7, width=64, height=63)
+
+    # contains avatar image within top_label
+    top_img_label = Label(frame2, bg="#84CBEE")
+    top_img_label.place(x=14, y=14, width=50, height=50)
+
+    # filler label righthand side LONG within filler_frame
+    filler_label = Label(frame2, bg="#84CBEE")
+    filler_label.place(x=70, y=7, width=322, height=63)
+    
+    # displaying frame 2 avatar within circle in top label
+    def frame2_avatar():
+        if exists('my_avatar.png'):
+            photo1 = Image.open('my_avatar.png') # importing the image
+        else:
+            photo1 = Image.open('generic_avatar.png') # importing the image
+        
+        resize_img1 = photo1.resize((45, 45), Image.LANCZOS) # resizing 
+        img1 = ImageTk.PhotoImage(resize_img1)
+        top_img_label.image =img1 # saving reference of photo 
+        top_img_label.place(x=19, y=19, height=40, width=40) # placing the image label
+        top_img_label.configure(image=img1) # setting the label to the image
+        
+        circle = Image.open('circle.png')
+        resize_circle = circle.resize((70,70), Image.LANCZOS)
+        circle1 = ImageTk.PhotoImage(resize_circle)
+        top_label.image = circle1
+        top_label.place(x=7, y=7, height=63, width=63)
+        top_label.configure(image=circle1)
     
     #================== Root Window buttons code =========================================================#
 
     # main menu bar 
     main_menu = Menu(root_window)
 
-    # sub/dropdown menu - is this needed? unsure 
+    # sub/dropdown menu 
     file_menu = Menu(root_window)
-    file_menu.add_command(label="Test 1") # un assigned menu
+    file_menu.add_command(label="Clear Chat Window", command=lambda:[clear_chat_window(), chat_window_state()]) # un assigned menu
     file_menu.add_command(label="Log Out",command=lambda:[show_frame(frame1), clear_chat_window()])  # calls return frame1 function
     file_menu.add_command(label="Hush Mode", command=lambda:hush()) # calls hush function
     # Alarm: an error here, couldn't work well 
@@ -410,7 +456,7 @@ def create_window(getReply, account):
     main_menu.add_cascade(label="Options", menu = file_menu)  # shows drop down button
     root_window.config(menu=main_menu) 
 
-    
+    frame2_avatar()
     show_frame(frame1)
     
     return root_window
