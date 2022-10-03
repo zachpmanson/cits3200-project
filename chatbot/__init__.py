@@ -8,6 +8,7 @@ import struct
 import scraper
 import weather
 import socket
+import alarm
 import pyjokes
 from googletrans import Translator
 from better_profanity import profanity
@@ -266,6 +267,9 @@ def getReply(msg):
             reply = "I do not want to talk about this!"
         elif int == 2:
             reply = "What sort of bot do you think I am?"
+
+    elif (lowermsg.startswith("reminder")):
+        reply = alarm.launchAlarm()
 
     elif(msg):
         reply = get_chatbot_reply(msg)
