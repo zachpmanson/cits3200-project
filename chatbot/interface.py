@@ -12,6 +12,7 @@ from os.path import exists
 import alarm
 import aboutus
 import threading
+from threading import Thread
 
 # outstanding UI issues
 # chat_window text formating, user and bot responses
@@ -24,7 +25,7 @@ set_font = ("Roboto", 11) # setting default font style and size
 bold_font = ("Roboto", 11, "bold") # change style to bold
 
 def create_window(getReply, account):
-    
+   
 #================== Defining Functions =================================================# 
 
     # function to call google login and change to frame 2

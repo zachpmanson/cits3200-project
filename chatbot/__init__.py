@@ -55,7 +55,7 @@ def get_chatbot_reply(msg):
     return reply
 
 
-def getReply(msg):
+def getReply(msg):  
     msg = msg.strip()
     lowermsg = msg.lower()
 
@@ -268,12 +268,7 @@ def getReply(msg):
             reply = "What sort of bot do you think I am?"
 
     elif(msg):
-        # thread_1 = Thread(target=get_chatbot_reply, args=(input,))
-        # thread_1.start()
         reply = get_chatbot_reply(msg)
-
-        # time.sleep(1)
-        # thread_1.join()
 
     else:
         int = random.randint(0,2)
