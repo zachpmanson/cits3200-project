@@ -82,6 +82,20 @@ def getReply(msg):
             reply = "Talk again soon friend :)"
         elif int == 4:
             reply = "I hope you have a good day!"
+    elif (lowermsg == "how are you" or "how are you doing" or "how have you been"):
+        int= random.randint(0,5)
+        if int == 0:
+            reply = "I'm going pretty good, thanks for asking!"
+        elif int == 1:
+            reply = "I'm doing alright, how about yourself?"
+        elif int == 2: 
+            reply = "Always trying to do better!!"
+        elif int == 3:
+            reply = "Busy as always, but it's good to see you again!)"
+        elif int == 4:
+            reply = "To be honest, not too well recently"
+        elif int == 5:
+            reply = "Pretty poorly, but my day always gets better when you're around! "
 
     elif (profanity.contains_profanity(msg)):
         int = random.randint(0,3)
@@ -144,7 +158,7 @@ def getReply(msg):
         translator = Translator()
         translation = translator.translate(lowermsg.replace("translate ", ""))
         reply = translation.text #when finished will be able to translate to english by default and any other language on request
-        
+
     elif (lowermsg.startswith("what language is")): #function for detecting which language the message has been written in
         translator = Translator()
         detection = translator.detect(lowermsg.replace("what language is ", ""))
