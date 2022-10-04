@@ -2,7 +2,6 @@ import datetime
 from tkinter import *
 from tkinter import messagebox
 import threading
-#import re
 
 def launchAlarm():
     root = Tk()
@@ -27,48 +26,41 @@ def launchAlarm():
 
     def on_check():
         event = threading.Event()
-        NowTime = datetime.datetime.now()
+        n_TimeEnd = Time_text.get()
+        print(n_TimeEnd)
+        n_Reminder = Reminder_text.get()
+        print(n_Reminder)
 
-        TimeEnd = Time_text.get()
-        TimeEndInt = int(TimeEnd) * 60
-        Reminder = Reminder_text.get()
-        #try:
-        #    TimeEnd = Time_text.get()
-        #    TimeEnd = int(TimeEnd) * 60
-            
-        #except ValueError:
-        #    pass
-        #TimeEnd = Time_text.get()
-        #TimeEnd = int(float(TimeEnd)) * 60
-        #if TimeEnd == 0:
-        #    TimeEnd = 0
-        #elif TimeEnd > 0:
-        #    TimeEnd = TimeEnd * 60
+        try:
+            c_TimeEnd = int(n_TimeEnd) * 60
 
-        #Reminder = Reminder_text.get()
-        #TimeEnd = re.findall(r'\d+\.\d+', TimeEnd)
+            if c_TimeEnd < 0:
+                messagebox.showinfo(message="Error.., n >= 0, and n cannot be decimal (e.g. 0.1)")
 
-        if TimeEndInt < 0:
+            elif c_TimeEnd >= 0:
+                if n_Reminder == "":
+                    n_Reminder = "Time's up!"
+
+                root.state('icon')
+                event.wait(c_TimeEnd)
+                NowTime = datetime.datetime.now()
+                NowTime = str(NowTime)
+                NowTime = NowTime[0:19]
+                messagebox.showinfo(title="Reminder", message="Bot Reminder: \n" + "--- " + n_Reminder + " ---" + "\n" + NowTime)
+        
+            else:
+                messagebox.showinfo(message="Error.., n >= 0, and n cannot be decimal (e.g. 0.1)")
+
+        except ValueError:
             messagebox.showinfo(message="Error.., n >= 0, and n cannot be decimal (e.g. 0.1)")
-
-        else:
-            if Reminder == "":
-                Reminder = "Time's up!"
-            NowTime = str(NowTime)
-            NowTime = NowTime[0:19]
-            print("Time now: ", NowTime)
-
-            root.state('icon')
-            event.wait(TimeEndInt)
-            messagebox.showinfo(title="Reminder", message="Bot Reminder: \n" + Reminder+ "\nNOW!\n" + str(datetime.datetime.now()))
 
     Button(root, text="Start :))", command = on_check).pack()
 
     root.mainloop()
 
 if __name__ == "__main__":    
-
-    launchAlarm()
+    ala = launchAlarm()
+    ala.on_check()
 
 
     
