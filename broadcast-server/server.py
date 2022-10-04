@@ -98,7 +98,7 @@ try:
             if verbose: print(f"Got connection {nconnections} from {addr}")
             try:
                 received_data = recv_msg(connection).decode()
-            except (Exception):
+            except (Exception, socket.timeout):
                 if verbose: print("\tClosing connection")
                 connection.close()
                 continue
