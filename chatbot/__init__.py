@@ -70,7 +70,6 @@ def getReply(msg):
             reply = "Well hello there!"
         elif int == 3:
             reply = "Bonjour!"
-
     elif (lowermsg == "bye"):
         int= random.randint(0,4)
         if int == 0:
@@ -144,7 +143,12 @@ def getReply(msg):
     elif (lowermsg.startswith("translate")):
         translator = Translator()
         translation = translator.translate(lowermsg.replace("translate ", ""))
-        reply = translation.text
+        reply = translation.text #when finished will be able to translate to english by default and any other language on request
+        
+    elif (lowermsg.startswith("what language is")): #function for detecting which language the message has been written in
+        translator = Translator()
+        detection = translator.detect(lowermsg.replace("what language is ", ""))
+        reply =  detection # should be able to calculate certainty and state the language it's in, ultimately, "I'm __ % certain that this sentence is in ____"
 
     elif (lowermsg.startswith("where is")): # dantem use this 
         reply = "The closest result is here: "
