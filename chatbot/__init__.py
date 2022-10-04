@@ -224,20 +224,26 @@ def getReply(msg):
                 end=(time+timedelta(hours=1)).isoformat()
             )
             reply = f"Added '{name}' to calendar on {time.isoformat()}"
-
+    elif("riddle" in lowermsg):
+            reply = jokes.obtain_joke('riddles')
+    elif("pun" in lowermsg):
+            reply = jokes.obtain_joke('puns')
     elif ("joke" in lowermsg):
-        
+
         if ("dad" in lowermsg):
             reply = jokes.obtain_joke('dadjokes')
         elif("adult" in lowermsg):
             reply = jokes.obtain_joke('adultjokes')
         elif("knock knock" in lowermsg):
             reply = jokes.obtain_joke('knock_knock')
-
+        elif("pun" in lowermsg):
+            reply = jokes.obtain_joke('pun')
+        elif("tongue_twister" in lowermsg):
+            reply = jokes.obtain_joke('tongue_twister')
         elif ("computing" in lowermsg):
             reply = pyjokes.get_joke(language='en', category='neutral')
 
-        elif ("dad" and "adult" and "knock knock" and "computing" not in lowermsg):
+        elif ("dad" and "adult" and "knock knock" and "computing" and "pun" and "tongue_twister" not in lowermsg):
             int = random.randint(0,10)
             if int == 0:
                 reply = "What's the dentist's favorite idiom?\n\nPut your money where your mouth is."

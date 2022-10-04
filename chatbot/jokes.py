@@ -90,23 +90,69 @@ knock_knock = [
     "Knock! Knock!\nWho's there?\nScold.\nScold who?\nScold outside, let me in!",
     "Knock! Knock!\nWho's there?\nNeedle.\nNeedle who?\nNeedle little help getting in the door",
     "Knock! Knock!\nWho's there?\nDejav.\nDejav who?\nKnock! Knock!",
-    "Knock! Knock!\nWho's there?\nHike.\nHike who?\nI didn't know you liked Japanese poetry!", 
+    "Knock! Knock!\nWho's there?\nHike.\nHike who?\nI didn't know you liked Japanese poetry!",
+    "Knock, knock!\nWho’s there?\nGladys.\nGladys, who?\nGladys the weekend—no homework!",
+    "Knock, knock!\nWho’s there?\nBoo.\nBoo who?\nHey, don’t cry!",
+    "Knock! Knock!\nWho’s there?\nRobin.\nRobin who?\nRobin you—hand over the cash!",
+    "Knock! Knock!\nWho’s there?\nCash.\nCash who?\nNo thanks, I prefer peanuts.",
+    "Knock! Knock!\nWho's there?\nNo one\nNo one who?\n*Remains silent*",
+    "Knock, knock!\nWho's there?\nOpportunity\nThat's impossible.\nOpportunity doesn't come knocking twice!",
+    "Knock, knock!\nWho's there?\nStopwatch\nStopwatch who?\nStopwatch you're doing and pay attention!",
+    "Knock, knock!\nWho's there?\nBeets\nBeets who?\nBeets me!",
+    "Knock, knock!\nWho's there?\nHo-ho.\nHo-ho who?\nYou know, your Santa impression could use a little work.",
+    "Knock, knock!\nWho's there?\nOtto.\nOtto who?\nOtto know what's taking you so long!",
+    "Knock, knock!\nWho's there?\nOrange.\nOrange who?\nOrange you gonna open the door?",
+    "Knock, knock!\nWho's there?\nNoah.\nNoah who?\nNoah any place I can get a bite to eat?",
+    "Knock, knock!\nWho's there?\nNeedle.\nNeedle who?\nNeedle little help gettin' in the door.",
+    "Knock, knock!\nWho's there?\nOmelette.\nOmelette who?\nOmelette you finish.",
+    "Knock, knock!\nWho's there?\nYou.\nYou who?\nYou hoo, anybody home?",
+    "Knock, knock!\nWho's there?\nRay D.\nRay D. who?\nRay D or not,here I come.",
+    "Knock, knock!\nWho's there?\nTaco.\nTaco who?\nTaco to you later. It's taking too long for you to open the door.",
+    "Knock, knock!\nWho's there?\nNana.\nNana who?\nNana your business.",
+    "Knock, knock!\nWho's there?\nHatch.\nHatch who?\nGod bless you.",
+    "Knock, knock!\nWho's there?\nPolice.\nPolice who?\nPolice stop telling these awful knock knock jokes!",
+    "Knock, knock!\nWho's there?\nYah.\nYah who?\nNo thanks, I use Bing or Google.",
     ]
 
 pun = [
+    "Light travels faster than sound. That's why some people appear bright until you hear them speak",
+    "I was wondering why the ball was getting bigger. Then it hit me",
+    "I have a few jokes about unemployed people, but none of them work",
+    '"I have a split personality",said Tom, being frank.',
+    "I Renamed my iPod The Titanic, so when I plug it in, it says “The Titanic is syncing.",
+    "How do you make holy water? You boil the hell out of it",
+    "Last night, I dreamed I was swimming in an ocean of orange soda. But it was just a Fanta sea.",
+    "When life gives you melons, you're dyslexic",
+    "Will glass coffins be a success? Remains to be seen",
+    "I lost my job at the bank on my very first day. A woman asked me to check her balance, so I pushed her over",
+    "It's hard to explain puns to kleptomaniacs because they always take things literally",
+    "What’s the difference between a hippo and a zippo? One is really heavy and the other is a little lighter",
+    "Two windmills are standing in a wind farm. One asks, “What’s your favorite kind of music?” The other says, “I’m a big metal fan.”",
+    "Did you hear about the guy whose whole left side was cut off? He’s all right now",
+    "I can’t believe I got fired from the calendar factory. All I did was take a day off",
+    "The man who survived pepper spray and mustard gas is now a seasoned veteran",
+    "I tried to sue the airline for losing my luggage. I lost my case",
+    "Hear about the new restaurant called Karma? There’s no menu - you get what you deserve",
+    "What do you call a bee that can’t make up its mind? A maybe",
+    "England doesn't have a kidney bank, but it does have a Liverpool",
+    "The furniture store keeps calling me to come back. But all I wanted was one night stand",
+    "When the past, present, and future go camping they always argue. It's intense tense in tents",
+    "Let me tell you about my grandfather. He was a good man, a brave man. He had the heart of a lion, and a lifetime ban from the zoo",
+    "I wasn’t originally going to get a brain transplant, but then I changed my mind",
+    "What do you get when you mix alcohol and literature? Tequila mockingbird",
+    ]
+tongue_twister = [
     "",
-]
-
-tounge_twister = [
-    "",
-]
+    ]
 
 all_jokes = {
     'dadjokes': dadjokes,
     'adultjokes': adultjokes,
-    'riddle': riddles,
+    'riddles': riddles,
     'knock_knock': knock_knock,
-}
+    'pun': pun,
+    'tongue_twister': tongue_twister,
+    }
 
 
 class typeofjokeNotFoundError(Exception):
