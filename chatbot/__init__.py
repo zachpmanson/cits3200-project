@@ -87,7 +87,7 @@ def getReply(msg):
     elif (profanity.contains_profanity(msg)):
         int = random.randint(0,3)
         if int == 0:
-            reply = "The language you've used is offesnive or inappropriate for discussion. Please ask something else."
+            reply = "The language you've used is offensive or inappropriate for discussion. Please ask something else."
         if int == 1:
             reply = "Please no profanity!"
         if int == 2:
@@ -226,13 +226,18 @@ def getReply(msg):
             reply = f"Added '{name}' to calendar on {time.isoformat()}"
 
     elif ("joke" in lowermsg):
+        
         if ("dad" in lowermsg):
             reply = jokes.obtain_joke('dadjokes')
+        elif("adult" in lowermsg):
+            reply = jokes.obtain_joke('adultjokes')
+        elif("knock knock" in lowermsg):
+            reply = jokes.obtain_joke('knock_knock')
 
         elif ("computing" in lowermsg):
             reply = pyjokes.get_joke(language='en', category='neutral')
 
-        elif ("dad" and "computing" not in lowermsg):
+        elif ("dad" and "adult" and "knock knock" and "computing" not in lowermsg):
             int = random.randint(0,10)
             if int == 0:
                 reply = "What's the dentist's favorite idiom?\n\nPut your money where your mouth is."
@@ -257,7 +262,7 @@ def getReply(msg):
             elif int == 10:
                 reply = "What did the dentist shout in the courtroom?\n\nYou can't handle the tooth!"
 
-        else: reply = "" 
+        else: reply = "Sorry, I don't know that type of joke!" or "Why would I know jokes about that..." or "You have a 'unique' sense of humour" 
 
     elif ( "visa" in msg or "password" in msg or "mastercard" in msg or "PIN" in msg or "american express" in msg or  "bank account" in msg or "credit card" in msg or "debit card" in msg):
         int = random.randint(0,2)
