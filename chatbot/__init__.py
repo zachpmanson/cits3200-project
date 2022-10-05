@@ -70,6 +70,7 @@ def getReply(msg):
             reply = "Well hello there!"
         elif int == 3:
             reply = "Bonjour!"
+    
     elif (lowermsg == "bye"):
         int= random.randint(0,4)
         if int == 0:
@@ -82,9 +83,10 @@ def getReply(msg):
             reply = "Talk again soon friend :)"
         elif int == 4:
             reply = "I hope you have a good day!"
-    elif (lowermsg == "how are you" or "how are you doing" or "how have you been"):
+    
+    elif (lowermsg == "how are you" or lowermsg == "how are you doing" or lowermsg =="how have you been"):
         int= random.randint(0,5)
-        if int == 0:
+        if  int == 0:
             reply = "I'm going pretty good, thanks for asking!"
         elif int == 1:
             reply = "I'm doing alright, how about yourself?"
