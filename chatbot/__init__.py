@@ -247,7 +247,9 @@ def getReply(msg):
     elif("riddle" in lowermsg):
             reply = jokes.obtain_joke('riddles')
     elif("pun" in lowermsg):
-            reply = jokes.obtain_joke('puns')
+            reply = jokes.obtain_joke('pun')
+    elif("tongue twister" in lowermsg):
+            reply = jokes.obtain_joke('tongue_twister')
     elif ("joke" in lowermsg):
 
         if ("dad" in lowermsg):
@@ -258,8 +260,6 @@ def getReply(msg):
             reply = jokes.obtain_joke('knock_knock')
         elif("pun" in lowermsg):
             reply = jokes.obtain_joke('pun')
-        elif("tongue_twister" in lowermsg):
-            reply = jokes.obtain_joke('tongue_twister')
         elif ("computing" in lowermsg):
             reply = pyjokes.get_joke(language='en', category='neutral')
 
