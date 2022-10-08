@@ -7,7 +7,8 @@ import tkinter
 from PIL import ImageTk, Image
 import python_avatars as pa
 import time 
-# import cairosvg
+import cairosvg
+import pyvips
 from os.path import exists
 import alarm
 import aboutus
@@ -259,6 +260,8 @@ def create_window(getReply, account):
 
         # Current saved avatar 
         my_avatar = pa.Avatar(
+            style=pa.AvatarStyle.CIRCLE,
+            background_color= pa.BackgroundColor.BLACK ,
             skin_color=eval('pa.SkinColor.%s' % skin),
             eyes=eval('pa.EyeType.%s' % eyes),
             top=eval('pa.HairType.%s' % hair),
@@ -270,8 +273,10 @@ def create_window(getReply, account):
             eyebrows=eval('pa.EyebrowType.%s' % eyebrows),
             clothing_color=eval('pa.ClothingColor.%s' % clothecolor),
         )
-        # my_avatar.render("my_avatar.svg")
-        # cairosvg.svg2png(url="my_avatar.svg", write_to="my_avatar.png")
+        my_avatar.render("my_avatar.svg")
+        image = pyvips.Image.new_from_file("my_avatar.svg", dpi=300)
+        image.write_to_file("my_avatar.png")
+        #cairosvg.svg2png(url="my_avatar.svg", write_to="my_avatar.png")
     
     change_skin(0,0,0,0,0,0)
 
