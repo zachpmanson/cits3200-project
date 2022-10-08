@@ -108,7 +108,6 @@ def create_window(getReply, account):
     # Background lbl 
     bg_lbl = tk.Label(frame1,bg='#84CBEE')
     bg_lbl.place(x=6, y=6,height= 488, width= 388)
-
     # Inserting avatar image
     def insert_img():
         av_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0) # creating avatar border
@@ -150,13 +149,7 @@ def create_window(getReply, account):
     list_clothing_colors = ['BLACK', 'BLUE_01', 'BLUE_02', 'BLUE_03', 'GRAY_01', 'GRAY_2', 'HEATHER', 'PASTEL_BLUE', 'PASTEL_GREEN', 'PASTEL_ORANGE', 'PASTEL_YELLOW', 'PINK', 'RED', 'WHITE']
 
     # Setting default avatar
-    def change_skin(sk=0, ey=0, ha=0, mo=0, ac=0, sh=0, fh=0, hc=0, eb=0, cc=0):
-        skin = 'TANNED'
-        eyes = 'DEFAULT'
-        hair = 'NONE'
-        mouth = 'DEFAULT'
-        accessories = 'DEFAULT'
-        clothes = 'BLAZER_SHIRT'
+    def change_skin(sk, ey, ha, mo, ac, sh, fh, hc, eb, cc):
         
         #Skin
         if sk == 1:
@@ -275,7 +268,6 @@ def create_window(getReply, account):
         pyvips.cache_set_max(0)
         image = pyvips.Image.new_from_file("my_avatar.svg", dpi=300)
         image.write_to_file("my_avatar.png")
-        return sk, ey, ha, mo, ac, sh, fh, hc, eb, cc
         #cairosvg.svg2png(url="my_avatar.svg", write_to="my_avatar.png")
     
 
