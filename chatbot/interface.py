@@ -7,7 +7,7 @@ import tkinter
 from PIL import ImageTk, Image
 import python_avatars as pa
 import time 
-#import cairosvg
+import random
 import pyvips
 from os.path import exists
 import alarm
@@ -135,7 +135,7 @@ def create_window(getReply, account):
     list_facial_hair_type = cycle(['NONE', 'BEARD_LIGHT', 'BEARD_MAGESTIC', 'BEARD_MEDIUM', 'MOUSTACHE_FANCY', 'MOUSTACHE_MAGNUM'])
     list_hair_color = cycle(['AUBURN', 'BLACK', 'BLONDE', 'BLONDE_GOLDEN', 'BROWN', 'BROWN_DARK', 'PASTEL_PINK', 'PLATINUM', 'RED','SILVER_GRAY'])
     list_eyebrows_type = cycle(['NONE', 'ANGRY_NATURAL', 'ANGRY', 'DEFAULT_NATURAL', 'DEFAULT', 'FLAT_NATURAL', 'FROWN_NATURAL', 'RAISED_EXCITED_NATURAL', 'RAISED_EXCITED', 'SAD_CONCERNED_NATURAL', 'SAD_CONCERNED', 'UNIBROW_NATURAL', 'UP_DOWN_NATURAL', 'UP_DOWN'])
-    list_clothing_color = cycle(['BLACK', 'BLUE_01', 'BLUE_02', 'BLUE_03', 'GRAY_01', 'GRAY_2', 'HEATHER', 'PASTEL_BLUE', 'PASTEL_GREEN', 'PASTEL_ORANGE', 'PASTEL_YELLOW', 'PINK', 'RED', 'WHITE'])
+    list_clothing_color = cycle(['BLACK', 'BLUE_01', 'BLUE_02', 'BLUE_03', 'GRAY_01', 'HEATHER', 'PASTEL_BLUE', 'PASTEL_GREEN', 'PASTEL_ORANGE', 'PASTEL_YELLOW', 'PINK', 'RED', 'WHITE'])
     
     list_skin_colors = ['TANNED','YELLOW','PALE','LIGHT','BROWN','DARK_BROWN','BLACK']
     list_eye_types = ['CLOSED', 'CRY', 'DEFAULT', 'EYE_ROLL', 'HAPPY', 'HEART', 'SIDE', 'SQUINT', 'SURPRISED', 'WINK_WACKY', 'WINK', 'X_DIZZY']
@@ -146,7 +146,7 @@ def create_window(getReply, account):
     list_facial_hair_types = ['NONE', 'BEARD_LIGHT', 'BEARD_MAGESTIC', 'BEARD_MEDIUM', 'MOUSTACHE_FANCY', 'MOUSTACHE_MAGNUM']
     list_hair_colors = ['AUBURN', 'BLACK', 'BLONDE', 'BLONDE_GOLDEN', 'BROWN', 'BROWN_DARK', 'PASTEL_PINK', 'PLATINUM', 'RED','SILVER_GRAY']
     list_eyebrows_types = ['NONE', 'ANGRY_NATURAL', 'ANGRY', 'DEFAULT_NATURAL', 'DEFAULT', 'FLAT_NATURAL', 'FROWN_NATURAL', 'RAISED_EXCITED_NATURAL', 'RAISED_EXCITED', 'SAD_CONCERNED_NATURAL', 'SAD_CONCERNED', 'UNIBROW_NATURAL', 'UP_DOWN_NATURAL', 'UP_DOWN']
-    list_clothing_colors = ['BLACK', 'BLUE_01', 'BLUE_02', 'BLUE_03', 'GRAY_01', 'GRAY_2', 'HEATHER', 'PASTEL_BLUE', 'PASTEL_GREEN', 'PASTEL_ORANGE', 'PASTEL_YELLOW', 'PINK', 'RED', 'WHITE']
+    list_clothing_colors = ['BLACK', 'BLUE_01', 'BLUE_02', 'BLUE_03', 'GRAY_01', 'HEATHER', 'PASTEL_BLUE', 'PASTEL_GREEN', 'PASTEL_ORANGE', 'PASTEL_YELLOW', 'PINK', 'RED', 'WHITE']
 
     # Setting default avatar
     def change_skin(sk, ey, ha, mo, ac, sh, fh, hc, eb, cc):
@@ -160,16 +160,22 @@ def create_window(getReply, account):
         if sk == 0:
             for i in range(len(list_skin_colors)):
                 skin = next(list_skin_color)
+        if sk == 2:
+            for i in range(random.randint(1, 9)):
+                skin = next(list_skin_color)
 
         #Eyes
         if ey == 1:
-            eyes = next(list_eye_type)
+            eye = next(list_eye_type)
         if ey == -1:
             for i in range(len(list_eye_types)-1):
-                eyes = next(list_eye_type)
+                eye = next(list_eye_type)
         if ey == 0:
             for i in range(len(list_eye_types)):
-                eyes = next(list_eye_type)
+                eye = next(list_eye_type)
+        if ey == 2:
+            for i in range(random.randint(1, 9)):
+                eye = next(list_eye_type)
         
         #Hair
         if ha == 1:
@@ -180,7 +186,9 @@ def create_window(getReply, account):
         if ha == 0:
             for i in range(len(list_top_types)):
                 hair = next(list_top_type)
-        
+        if ha == 2:
+            for i in range(random.randint(1, 9)):
+                hair = next(list_top_type)
         #Mouth
         if mo == 1:
             mouth = next(list_mouth_type)
@@ -190,7 +198,10 @@ def create_window(getReply, account):
         if mo == 0:
             for i in range(len(list_mouth_types)):
                 mouth = next(list_mouth_type)
-        
+        if mo == 2:
+            for i in range(random.randint(1, 9)):
+                mouth = next(list_mouth_type)
+
         #Accessories
         if ac == 1:
             accessories = next(list_accessories_type)
@@ -200,7 +211,10 @@ def create_window(getReply, account):
         if ac == 0:
             for i in range(len(list_accessories_types)):
                 accessories = next(list_accessories_type)
-        
+        if ac == 2:
+            for i in range(random.randint(1, 9)):
+                accessories = next(list_accessories_type)
+
         #Clothes
         if sh == 1:
             clothes = next(list_clothe_type)
@@ -210,7 +224,10 @@ def create_window(getReply, account):
         if sh == 0:
             for i in range(len(list_clothe_types)):
                 clothes = next(list_clothe_type)
-        
+        if sh == 2:
+            for i in range(random.randint(1, 9)):
+                clothes = next(list_clothe_type)
+
         #Clothe Colors
         if cc == 1:
             clothecolor = next(list_clothing_color)
@@ -220,17 +237,23 @@ def create_window(getReply, account):
         if cc == 0:
             for i in range(len(list_clothing_colors)):
                 clothecolor = next(list_clothing_color)
-        
+        if cc == 2:
+            for i in range(random.randint(1, 9)):
+                clothecolor = next(list_clothing_color)
+
         #Eyebrows
         if eb == 1:
-            eyebrows = next(list_eyebrows_type)
+            eye_brows = next(list_eyebrows_type)
         if eb == -1:
             for i in range(len(list_eyebrows_types)-1):
-                eyebrows = next(list_eyebrows_type)
+                eye_brows = next(list_eyebrows_type)
         if eb == 0:
             for i in range(len(list_eyebrows_types)):
-                eyebrows = next(list_eyebrows_type)
-        
+                eye_brows = next(list_eyebrows_type)
+        if eb == 2:
+            for i in range(random.randint(1, 9)):
+                eye_brows = next(list_eyebrows_type)
+
         #Hair Color
         if hc == 1:
             haircolor = next(list_hair_color)
@@ -240,7 +263,10 @@ def create_window(getReply, account):
         if hc == 0:
             for i in range(len(list_hair_colors)):
                 haircolor = next(list_hair_color)
-        
+        if hc == 2:
+            for i in range(random.randint(1, 9)):
+                haircolor = next(list_hair_color)
+
         #Facial Hair
         if fh == 1:
             facialhair = next(list_facial_hair_type)
@@ -250,25 +276,26 @@ def create_window(getReply, account):
         if fh == 0:
             for i in range(len(list_facial_hair_types)):
                 facialhair = next(list_facial_hair_type)
-
+        if fh == 2:
+            for i in range(random.randint(1, 9)):
+                facialhair = next(list_facial_hair_type)
         # Current saved avatar 
         my_avatar = pa.Avatar(
             skin_color=eval('pa.SkinColor.%s' % skin),
-            eyes=eval('pa.EyeType.%s' % eyes),
+            eyes=eval('pa.EyeType.%s' % eye),
             top=eval('pa.HairType.%s' % hair),
             mouth=eval('pa.MouthType.%s' % mouth),
             accessory=eval('pa.AccessoryType.%s' % accessories),
             clothing=eval('pa.ClothingType.%s' % clothes),
             facial_hair=eval('pa.FacialHairType.%s' % facialhair),
             hair_color=eval('pa.HairColor.%s' % haircolor),
-            eyebrows=eval('pa.EyebrowType.%s' % eyebrows),
+            eyebrows=eval('pa.EyebrowType.%s' % eye_brows),
             clothing_color=eval('pa.ClothingColor.%s' % clothecolor),
         )
         my_avatar.render("my_avatar.svg")
         pyvips.cache_set_max(0)
         image = pyvips.Image.new_from_file("my_avatar.svg", dpi=300)
         image.write_to_file("my_avatar.png")
-        #cairosvg.svg2png(url="my_avatar.svg", write_to="my_avatar.png")
     
 
 #================== Frame 1 - Button creation code ======================================================#
@@ -379,7 +406,7 @@ def create_window(getReply, account):
     submit_btn.bind('<Return>', show_frame)
     
     # Random avatar button
-    rand_btn = tk.Button(frame1, text="Randomise!", bg='white')    
+    rand_btn = tk.Button(frame1, text="Randomise!", bg='white', command= lambda: [change_skin(2, 2, 2, 2, 2, 2, 2, 2, 2, 2), insert_img()])    
     rand_btn.place(x=163, y=300, height=50, width=75)
     
     #================== Frame 2 - Chat bot UI code =================================================#
