@@ -1,6 +1,6 @@
 import os
 os.environ['PATH'] = os.getcwd() + '/bin;' + os.environ['PATH']
-os.environ['PATH'] = r"C:\Program Files\GTK3-Runtime Win64\bin" + os.environ['PATH']
+os.environ['PATH'] = r"C:\Program Files\GTK3-Runtime Win64\bin;" + os.environ['PATH']
 os.add_dll_directory()
 import asyncio
 from datetime import datetime, timedelta
