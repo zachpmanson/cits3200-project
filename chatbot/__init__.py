@@ -1,3 +1,6 @@
+import os
+os.environ['PATH'] = os.getcwd() + '/bin;' + os.environ['PATH']
+
 import asyncio
 from datetime import datetime, timedelta
 import time
@@ -14,7 +17,6 @@ from googletrans import Translator
 from better_profanity import profanity
 import random
 from threading import Thread
-
 # Sends packed big endian message 
 def send_msg(sock, msg):
     if type(msg) == bytes:
