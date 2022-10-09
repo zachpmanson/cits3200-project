@@ -8,3 +8,4 @@ python -m venv venv
 pip install -r ./chatbot/requirements.txt
 python -m spacy download en
 echo "Installation complete!"
+Read-Host
