@@ -11,7 +11,7 @@ from selenium.webdriver.chrome.options import Options
 import time
 
 import os
-
+import platform
 import cv2
 
 #imagefn = 'map_sc.png'
@@ -27,8 +27,13 @@ def getMaps(place) :
     # chromedriver is dependent on specific version of chrome: https://chromedriver.chromium.org/downloads
     # https://timonweb.com/misc/fixing-error-chromedriver-cannot-be-opened-because-the-developer-cannot-be-verified-unable-to-launch-the-chrome-browser-on-mac-os/
     # xattr -d com.apple.quarantine /Users/danteshabani/Desktop/cits3200-project/chatbot/chromedriver (for mac security issue)
-    script_dir = os.path.dirname(os.path.realpath(__file__))
-    PATH = os.path.join(script_dir, "chromedriver")
+    # script_dir = os.path.dirname(os.path.realpath(__file__))
+    script_dir = os.getcwd()
+    if platform.system() == "Windows":
+        PATH = os.path.join(script_dir, "chromedriver.exe")
+    else:
+        PATH = os.path.join(script_dir, "chromedriver")
+
     driver = webdriver.Chrome(PATH, options=op)
 
     # for location stuff: potentially use URL with coords OR from IP
