@@ -11,7 +11,7 @@ import socket
 import alarm
 import pyjokes
 from googletrans import Translator
-#from better_profanity import profanity
+from better_profanity import profanity
 import random
 from threading import Thread
 import maps
@@ -100,16 +100,16 @@ def getReply(msg):
         elif int == 5:
             reply = "Pretty poorly, but my day always gets better when you're around! "
 
-    #elif (profanity.contains_profanity(msg)):
-    #    int = random.randint(0,3)
-    #    if int == 0:
-    #        reply = "The language you've used is offensive or inappropriate for discussion. Please ask something else."
-    #    if int == 1:
-    #        reply = "Please no profanity!"
-    #    if int == 2:
-    #        reply = "Please do not use words that hurt my ears!"
-    #    if int == 3:
-    #        reply = "Woah, please be nice to me!"
+    elif (profanity.contains_profanity(msg)):
+       int = random.randint(0,3)
+       if int == 0:
+           reply = "The language you've used is offensive or inappropriate for discussion. Please ask something else."
+       if int == 1:
+           reply = "Please no profanity!"
+       if int == 2:
+           reply = "Please do not use words that hurt my ears!"
+       if int == 3:
+           reply = "Woah, please be nice to me!"
 
     elif len(msg) <=4 :
         int = random.randint(0,4)
