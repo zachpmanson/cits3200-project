@@ -175,7 +175,7 @@ def getReply(msg):
     elif (lowermsg.startswith("where is")): # dantem use this 
         url = maps.getMaps(msg.replace("where is ", ""))
         maps.resizeMap("map_sc.png")
-        reply = "The closest result is here: " + url
+        reply = url
 
     elif (lowermsg.startswith("get contact ")):
         people = account.get_contact(lowermsg[11:])

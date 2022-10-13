@@ -8,13 +8,15 @@ from PIL import ImageTk, Image
 import python_avatars as pa
 import time 
 import random
-import pyvips
+# import pyvips
 from os.path import exists
 import alarm
 import aboutus
 import help
 import threading
 from threading import Thread
+import webbrowser
+from functools import partial
 
 # outstanding UI issues
 # chat_window text formating, user and bot responses
@@ -68,12 +70,15 @@ def create_window(getReply, account):
             # time.sleep(1) test code
             # chat_window.tag_configure("right", justify='right') # configures window to input text right alligned
             # chat_window.tag_add("right", 50.50, "end")
-            chat_window.insert(END, f"\nAssistant \n{reply}\n")
             if (msg.startswith("where is")):
+                chat_window.insert(END, f"\nAssistant \nThe closest result is ")
+                url = reply
+                chat_window.insert(END,"here",hyperlink.add(partial(webbrowser.open, url)))
                 global map_image 
                 map_image = PhotoImage(file='map_sc.png') # importing the image, need to add image resizing
                 chat_window.image_create(END, image=map_image)
             else:
+                chat_window.insert(END, f"\nAssistant \n{reply}\n")
                 print("\n")
             chat_window.configure(state="disabled") # disables users for inputting directly into window
             chat_window.see(tk.END) # moves scroll bar to latest message location
@@ -298,8 +303,8 @@ def create_window(getReply, account):
             clothing_color=eval('pa.ClothingColor.%s' % clothecolor),
         )
         my_avatar.render("my_avatar.svg")
-        pyvips.cache_set_max(0)
-        image = pyvips.Image.new_from_file("my_avatar.svg", dpi=300)
+        # pyvips.cache_set_max(0)
+        # image = pyvips.Image.new_from_file("my_avatar.svg", dpi=300)
         image.write_to_file("my_avatar.png")
     
 
@@ -421,6 +426,9 @@ def create_window(getReply, account):
     chat_window.place(x=6, y=72, height= 342, width= 388)
     chat_window.configure(state="disabled") # disables users for inputting directly into window
     
+    hyperlink = HyperlinkManager(chat_window)
+
+
     # message window
     message_window = Text(frame2, bg="#84CBEE", width=30, cursor="arrow", wrap=WORD, font= set_font)
     message_window.place(x=6, y=426, height=66, width=388)
@@ -491,6 +499,39 @@ def create_window(getReply, account):
     show_frame(frame1)
     
     return root_window
+
+# from tkinter import *
+
+class HyperlinkManager:
+    def __init__(self, text):
+        self.text = text
+        self.text.tag_config("hyper", foreground="blue", underline=1)
+        self.text.tag_bind("hyper", "<Enter>", self._enter)
+        self.text.tag_bind("hyper", "<Leave>", self._leave)
+        self.text.tag_bind("hyper", "<Button-1>", self._click)
+        self.reset()
+
+    def reset(self):
+        self.links = {}
+
+    def add(self, action):
+        # add an action to the manager.  returns tags to use in
+        # associated text widget
+        tag = "hyper-%d" % len(self.links)
+        self.links[tag] = action
+        return "hyper", tag
+
+    def _enter(self, event):
+        self.text.config(cursor="hand2")
+
+    def _leave(self, event):
+        self.text.config(cursor="")
+
+    def _click(self, event):
+        for tag in self.text.tag_names(CURRENT):
+            if tag[:6] == "hyper-":
+                self.links[tag]()
+                return
 
 if __name__=="__main__":
     #window = create_window(lambda x: "Placeholder reply funtion")
