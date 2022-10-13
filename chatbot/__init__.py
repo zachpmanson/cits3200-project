@@ -1,6 +1,5 @@
 import os
 os.environ['PATH'] = os.getcwd() + '/bin;' + os.environ['PATH']
-os.environ['PATH'] = r"C:\Program Files\GTK3-Runtime Win64\bin;" + os.environ['PATH']
 import asyncio
 from datetime import datetime, timedelta
 import time
