@@ -152,10 +152,13 @@ def getReply(msg):
         elif int == 11:
             reply = "I can set a timer for you! Just go to the drop down menu at the top and select 'Alarm'."
             
+    elif ("scholar search" in lowermsg):
+        reply = scraper.scholar_search(msg.replace("search ", ""))
+
     elif ("search" in lowermsg):
         reply = scraper.google_search(msg.replace("search ", ""))
 
-    elif ("what" in lowermsg and "weather" in lowermsg):
+    elif ("what" in lowermsg and "weather" in lowermsg): 
         reply = weather.weather(lowermsg)
 
     elif (lowermsg.startswith("translate")):
