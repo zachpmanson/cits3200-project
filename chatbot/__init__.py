@@ -1,3 +1,5 @@
+import os
+os.environ['PATH'] = os.getcwd() + '/bin;' + os.environ['PATH']
 import asyncio
 from datetime import datetime, timedelta
 import time
@@ -14,6 +16,8 @@ from googletrans import Translator
 from better_profanity import profanity
 import random
 from threading import Thread
+import maps
+
 import maps
 
 # Sends packed big endian message 
@@ -173,7 +177,9 @@ def getReply(msg):
     elif (lowermsg.startswith("where is")): # dantem use this 
         url = maps.getMaps(msg.replace("where is ", ""))
         maps.resizeMap("map_sc.png")
-        reply = "The closest result is here: " + url
+        url = maps.getMaps(msg.replace("where is ", ""))
+        maps.resizeMap("map_sc.png")
+        reply = "The closest result is here: " + url + url
 
     elif (lowermsg.startswith("get contact ")):
         people = account.get_contact(lowermsg[11:])
