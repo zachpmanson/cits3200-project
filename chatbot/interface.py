@@ -58,6 +58,7 @@ def create_window(getReply, account):
     # send message function for frame2
     def send(input):    
         msg = message_window.get("1.0", END).strip()
+        lowermsg = msg.lower()
         if len(msg) == 0:
             print("message_window is empty")
             return 'break'  # stops the return key from starting new line in message_window
@@ -70,7 +71,7 @@ def create_window(getReply, account):
             # time.sleep(1) test code
             # chat_window.tag_configure("right", justify='right') # configures window to input text right alligned
             # chat_window.tag_add("right", 50.50, "end")
-            if (msg.startswith("where is")):
+            if (lowermsg.startswith("where is")):
                 chat_window.insert(END, f"\nAssistant \nThe closest result is ")
                 url = reply
                 chat_window.insert(END,"here",hyperlink.add(partial(webbrowser.open, url)))
@@ -78,6 +79,17 @@ def create_window(getReply, account):
                 global map_image 
                 map_image = PhotoImage(file='map_sc.png') # importing the image, need to add image resizing
                 chat_window.image_create(END, image=map_image)
+            elif ("scholar search" in lowermsg):
+                chat_window.insert(END, f"\nAssistant \n")
+                for item in reply:
+                    chat_window.insert(END,item["title"],hyperlink.add(partial(webbrowser.open, item["link"])))
+
+
+            elif ("search" in lowermsg):
+                chat_window.insert(END, f"\nAssistant \n")
+                for i,item in enumerate(reply):
+                    chat_window.insert(END, f"{i+1}. ")
+                    chat_window.insert(END,f"{item['title']}\n",hyperlink.add(partial(webbrowser.open, item["link"])))
             else:
                 chat_window.insert(END, f"\nAssistant \n{reply}\n")
                 print("\n")

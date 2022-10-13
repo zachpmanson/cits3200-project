@@ -15,7 +15,7 @@ def google_search(query):
         if item.parent.get("href") is None: continue
         links.append({
             "title":item.getText(),
-            "link":item.parent.get("href")[10:]
+            "link":"https://google.com"+item.parent.get("href")
         })
     for info in heading_object:
         print(info.getText())
