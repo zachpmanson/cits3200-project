@@ -142,7 +142,31 @@ pun = [
     "What do you get when you mix alcohol and literature? Tequila mockingbird",
     ]
 tongue_twister = [
-    "",
+    "Peter Piper picked a peck of pickled peppers\nA peck of pickled peppers Peter Piper picked\nIf Peter Piper picked a peck of pickled peppers\nWhere’s the peck of pickled peppers Peter Piper picked?",
+    "Betty Botter bought some butter\nBut she said the butter’s bitter\nIf I put it in my batter, it will make my batter bitter\nBut a bit of better butter will make my batter better\nSo ‘twas better Betty Botter bought a bit of better butter",
+    "How much wood would a woodchuck chuck if a woodchuck could chuck wood?\nHe would chuck, he would, as much as he could, and chuck as much wood\nAs a woodchuck would if a woodchuck could chuck wood",
+    "“A tutor who tooted the flute tried to teach two young tooters to toot.\nSaid the two to the tutor, ‘Is it harder to toot, or to tutor two tooters to toot?'”",
+    "“Brisk brave brigadiers brandished broad bright blades, blunderbusses, and bludgeons—balancing them badly.”",
+    "“If you must cross a coarse, cross cow across a crowded cow crossing, cross the cross, coarse cow across the crowded cow crossing carefully.”",
+    "“Betty bought a bit of butter. But the butter Betty bought was bitter. So Betty bought a better butter, and it was better than the butter Betty bought before.”",
+    "How can a clam cram in a clean cream can?",
+    "“Imagine an imaginary menagerie manager managing an imaginary menagerie.”",
+    "“Six sick hicks nick six slick bricks with picks and sticks.”",
+    "“I wish to wish the wish you wish to wish, but if you wish the wish the witch wishes, I won’t wish the wish you wish to wish.”",
+    "“She sells seashells by the seashore.”",
+    "The 33 thieves thought that they thrilled the throne throughout Thursday.",
+    "“Silly Sally swiftly shooed seven silly sheep. The seven silly sheep Silly Sally shooed shilly-shallied south. These sheep shouldn’t sleep in a shack; sheep should sleep in a shed.”",
+    "“Can you can a canned can into an un-canned can like a canner can can a canned can into an un-canned can?”",
+    "Betty’s big bunny bobbled by the blueberry bush.",
+    "Picky people pick Peter Pan Peanut-Butter, 'tis the peanut-butter picky people pick.",
+    "She stood on the balcony, inexplicably mimicking him hiccuping, and amicably welcoming him in.",
+    "Susie works in a shoeshine shop. Where she shines she sits, and where she sits she shines.",
+    "Fuzzy Wuzzy was a bear. Fuzzy Wuzzy had no hair. Fuzzy Wuzzy wasn’t very fuzzy, was he?",
+    "To begin to toboggan first buy a toboggan, but don't buy too big a toboggan. Too big a toboggan is too big a toboggan to buy to begin to toboggan.",
+    "Which witch switched the Swiss wristwatches?",
+    "If a black bug bleeds black blood, what color blood does a blue bug bleed?",
+    "The bottom of the butter bucket is the buttered bucket bottom.",
+    "Does your sport shop stock short socks with spots?",
     ]
 
 all_jokes = {

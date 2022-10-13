@@ -6,5 +6,5 @@ echo "Starting installation..."
 python -m venv venv
 . ./venv/Scripts/activate
 pip install -r ./chatbot/requirements.txt
-python -m spacy download en
 echo "Installation complete!"
+Read-Host
