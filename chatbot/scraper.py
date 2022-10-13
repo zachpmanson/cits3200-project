@@ -1,5 +1,9 @@
+import webbrowser
 import bs4
 import requests
+
+def callback(url):
+    webbrowser.open_new_tab(url)
 
 def google_search(query):
     url = 'https://google.com/search?q=' + "+".join(query.split())
