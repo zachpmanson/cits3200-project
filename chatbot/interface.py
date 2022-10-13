@@ -11,6 +11,7 @@ import time
 from os.path import exists
 import alarm
 import aboutus
+import help
 import threading
 from threading import Thread
 
@@ -452,6 +453,7 @@ def create_window(getReply, account):
     # Alarm: an error here, couldn't work well 
     file_menu.add_command(label="Alarm", command=lambda:alarm.launchAlarm()) # calls alarm function
     file_menu.add_command(label="About Us", command=lambda:aboutus.launchBrowser()) #calls a web about Yolia info
+    file_menu.add_command(label="Help", command=lambda:help.launchHelp()) # instructions
 
     # main menu widgets 
     main_menu.add_cascade(label="Options", menu = file_menu)  # shows drop down button
