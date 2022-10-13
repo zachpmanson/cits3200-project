@@ -20,7 +20,7 @@ from threading import Thread
 # custom buttons, gui colour scheme
 
 #======================= Setting Fonts =================================================# 
-set_font = ("Roboto", 11) # setting default font style and size
+set_font = ("Roboto", 10) # setting default font style and size
 
 bold_font = ("Roboto", 11, "bold") # change style to bold
 
@@ -103,15 +103,18 @@ def create_window(getReply, account):
         frame.grid(row=0,column=0,sticky='nsew')
         
     #================== Frame 1 - Avatar creation code ======================================================#
-
+  
     # Background lbl 
-    bg_lbl = tk.Label(frame1,bg='#84CBEE')
-    bg_lbl.place(x=6, y=6,height= 488, width= 388)
+    bg_lbl = tk.Label(frame1, bg='#84CBEE')
+    bg_lbl.place(x=6, y=6, height= 488, width= 388)
+    # top text label
+    text_lbl = tk.Label(frame1, bg='#84CBEE', text= "Hi, I am your assistant!", font=bold_font)
+    text_lbl.place(x=7, y=7, height = 25, width = 386)
 
     # Inserting avatar image
     def insert_img():
         av_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0) # creating avatar border
-        av_bdr.place(x=124, y=19, height=202, width=152)
+        av_bdr.place(x=124, y=34, height=202, width=152)
         if exists('my_avatar.png'):
             photo = Image.open('my_avatar.png') # importing the image
         else:
@@ -120,7 +123,7 @@ def create_window(getReply, account):
         img = ImageTk.PhotoImage(resize_img)
         av_lbl = tk.Label(frame1) # creating image label
         av_lbl.image =img # saving reference of photo 
-        av_lbl.place(x=125, y=20, height=200, width=150) # placing the image label
+        av_lbl.place(x=125, y=35, height=200, width=150) # placing the image label
         av_lbl.configure(image=img) # setting the label to the image
 
     insert_img()
@@ -279,106 +282,106 @@ def create_window(getReply, account):
     # button_right = PhotoImage(file="chatbot\\button_right.png")
     # Hair buttons & label
     hair_bdr = tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
-    hair_bdr.place(x=49, y=227, height=42, width=77)
+    hair_bdr.place(x=49, y=242, height=42, width=77)
     hair_lbl = tk.Label(frame1, text="Hair", bg='white')
-    hair_lbl.place(x=50, y=228, height=40, width=75)
+    hair_lbl.place(x=50, y=243, height=40, width=75)
     hair_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 1, 0, 0, 0, 0, 0, 0, 0), insert_img()])
-    hair_right_btn.place(x=131, y=243, height=10, width=20)
+    hair_right_btn.place(x=131, y=258, height=10, width=20)
     hair_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, -1, 0, 0, 0, 0, 0, 0, 0), insert_img()])
-    hair_left_btn.place(x=24, y=243, height=10, width=20)
+    hair_left_btn.place(x=24, y=258, height=10, width=20)
 
     # Hair Colour buttons & label
     hair_col_bdr = tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
-    hair_col_bdr.place(x=49, y=278, height=42, width=77)
+    hair_col_bdr.place(x=49, y=293, height=42, width=77)
     hair_col_lbl = tk.Label(frame1, text="Hair Colour", bg='white')
-    hair_col_lbl.place(x=50, y=279, height=40, width=75)
+    hair_col_lbl.place(x=50, y=294, height=40, width=75)
     hair_col_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 0, 0, 1, 0, 0), insert_img()])
-    hair_col_right_btn.place(x=131, y=294, height=10, width=20)
+    hair_col_right_btn.place(x=131, y=309, height=10, width=20)
     hair_col_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 0, 0, -1, 0, 0), insert_img()])
-    hair_col_left_btn.place(x=24, y=294, height=10, width=20)
+    hair_col_left_btn.place(x=24, y=309, height=10, width=20)
 
     # Skin buttons & label
     skin_bdr = tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0) # creating background border
-    skin_bdr.place(x=49, y=329, height=42, width=77) # placing border
+    skin_bdr.place(x=49, y=344, height=42, width=77) # placing border
     skin_lbl = tk.Label(frame1, text="Skin", bg='white') # creating skin label
-    skin_lbl.place(x=50, y=330, height=40, width=75) # placing skin label
+    skin_lbl.place(x=50, y=345, height=40, width=75) # placing skin label
     skin_right_btn = tk.Button(frame1, command= lambda: [change_skin(1, 0, 0, 0, 0, 0, 0, 0, 0, 0), insert_img()]) # creating right button
-    skin_right_btn.place(x=131, y=345, height=10, width=20) # placing right button
+    skin_right_btn.place(x=131, y=360, height=10, width=20) # placing right button
     skin_left_btn = tk.Button(frame1, command= lambda: [change_skin(-1, 0, 0, 0, 0, 0, 0, 0, 0, 0), insert_img()]) # creating left button
-    skin_left_btn.place(x=24, y=345, height=10, width=20) # placing right button
+    skin_left_btn.place(x=24, y=360, height=10, width=20) # placing right button
 
     # Eyes buttons & label
     eyes_bdr = tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
-    eyes_bdr.place(x=49, y=380, height=42, width=77)
+    eyes_bdr.place(x=49, y=395, height=42, width=77)
     eyes_lbl = tk.Label(frame1, text="Eyes", bg='white')
-    eyes_lbl.place(x=50, y=381, height=40, width=75)
+    eyes_lbl.place(x=50, y=396, height=40, width=75)
     eyes_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 1, 0, 0, 0, 0, 0, 0, 0, 0), insert_img()])
-    eyes_right_btn.place(x=131, y=396, height=10, width=20)
+    eyes_right_btn.place(x=131, y=411, height=10, width=20)
     eyes_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, -1, 0, 0, 0, 0, 0, 0, 0, 0), insert_img()])
-    eyes_left_btn.place(x=24, y=396, height=10, width=20)
+    eyes_left_btn.place(x=24, y=411, height=10, width=20)
 
     # Eyebrows buttons & label
     brows_bdr = tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
-    brows_bdr.place(x=49, y=431, height=42, width=77)
+    brows_bdr.place(x=49, y=446, height=42, width=77)
     brows_lbl = tk.Label(frame1, text="Eyebrows", bg='white')
-    brows_lbl.place(x=50, y=432, height=40, width=75)
+    brows_lbl.place(x=50, y=447, height=40, width=75)
     brows_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 0, 0, 0, 1, 0), insert_img()])
-    brows_right_btn.place(x=131, y=447, height=10, width=20)
+    brows_right_btn.place(x=131, y=462, height=10, width=20)
     brows_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 0, 0, 0, -1, 0), insert_img()])
-    brows_left_btn.place(x=24, y=447, height=10, width=20)
+    brows_left_btn.place(x=24, y=462, height=10, width=20)
 
     # Shirt buttons & label
     shirt_bdr = tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
-    shirt_bdr.place(x=274, y=227, height=42, width=77)
+    shirt_bdr.place(x=274, y=242, height=42, width=77)
     shirt_lbl = tk.Label(frame1, text="Shirt", bg='white')
-    shirt_lbl.place(x=275, y=228, height=40, width=75)
+    shirt_lbl.place(x=275, y=243, height=40, width=75)
     shirt_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 1, 0, 0, 0, 0), insert_img()])
-    shirt_right_btn.place(x=249, y=243, height=10, width=20)
+    shirt_right_btn.place(x=249, y=258, height=10, width=20)
     shirt_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, -1, 0, 0, 0, 0), insert_img()])
-    shirt_left_btn.place(x=357, y=243, height=10, width=20)
+    shirt_left_btn.place(x=357, y=258, height=10, width=20)
     
     # Accessories buttons & label
     acc_bdr = tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
-    acc_bdr.place(x=274, y=278, height=42, width=77)
+    acc_bdr.place(x=274, y=293, height=42, width=77)
     acc_lbl = tk.Label(frame1, text="Accessories", bg='white')
-    acc_lbl.place(x=275, y=279, height=40, width=75)
+    acc_lbl.place(x=275, y=294, height=40, width=75)
     acc_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 1, 0, 0, 0, 0, 0), insert_img()])
-    acc_right_btn.place(x=249, y=294, height=10, width=20)
+    acc_right_btn.place(x=249, y=309, height=10, width=20)
     acc_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, -1, 0, 0, 0, 0, 0), insert_img()])
-    acc_left_btn.place(x=356, y=294, height=10, width=20)
+    acc_left_btn.place(x=356, y=309, height=10, width=20)
 
     # Mouth buttons & label
     mouth_bdr = tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
-    mouth_bdr.place(x=274, y=329, height=42, width=77)
+    mouth_bdr.place(x=274, y=344, height=42, width=77)
     mouth_lbl = tk.Label(frame1, text="Mouth", bg='white')
-    mouth_lbl.place(x=275, y=330, height=40, width=75)
+    mouth_lbl.place(x=275, y=345, height=40, width=75)
     mouth_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 1, 0, 0, 0, 0, 0, 0), insert_img()])
-    mouth_right_btn.place(x=249, y=345, height=10, width=20)
+    mouth_right_btn.place(x=249, y=360, height=10, width=20)
     mouth_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, -1, 0, 0, 0, 0, 0, 0), insert_img()])
-    mouth_left_btn.place(x=356, y=345, height=10, width=20)
+    mouth_left_btn.place(x=356, y=360, height=10, width=20)
 
     # Clothing Colours buttons & label
     nose_bdr = tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
-    nose_bdr.place(x=274, y=380, height=42, width=77)
-    nose_lbl = tk.Label(frame1, text="Clothing Colour", bg='white', wraplength=50, justify='center')
-    nose_lbl.place(x=275, y=381, height=40, width=75)
+    nose_bdr.place(x=274, y=395, height=42, width=77)
+    nose_lbl = tk.Label(frame1, text="Clothing Colour", bg='white', wraplength=48, justify='center')
+    nose_lbl.place(x=275, y=396, height=40, width=75)
     nose_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 0, 0, 0, 0, 1), insert_img()])
-    nose_right_btn.place(x=249, y=396, height=10, width=20)
+    nose_right_btn.place(x=249, y=411, height=10, width=20)
     nose_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 0, 0, 0, 0, -1), insert_img()])
-    nose_left_btn.place(x=356, y=396, height=10, width=20)
+    nose_left_btn.place(x=356, y=411, height=10, width=20)
 
     # Facial Hair buttons & label
     mouth_bdr = tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
-    mouth_bdr.place(x=274, y=431, height=42, width=77)
+    mouth_bdr.place(x=274, y=446, height=42, width=77)
     mouth_lbl = tk.Label(frame1, text="Facial Hair", bg='white')
-    mouth_lbl.place(x=275, y=432, height=40, width=75)
+    mouth_lbl.place(x=275, y=447, height=40, width=75)
     mouth_right_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 0, 1, 0, 0, 0), insert_img()])
-    mouth_right_btn.place(x=249, y=447, height=10, width=20)
+    mouth_right_btn.place(x=249, y=462, height=10, width=20)
     mouth_left_btn = tk.Button(frame1, command= lambda: [change_skin(0, 0, 0, 0, 0, 0, -1, 0, 0, 0), insert_img()])
-    mouth_left_btn.place(x=356, y=447, height=10, width=20)
+    mouth_left_btn.place(x=356, y=462, height=10, width=20)
 
     # Submition button
-    submit_btn = tk.Button(frame1, text='Submit',command=submit_button) 
+    submit_btn = tk.Button(frame1, text='Login',command=submit_button) 
     submit_btn.place(x=163, y=438, height=30, width=75)
     submit_btn.bind('<Return>', show_frame)
     
@@ -399,13 +402,17 @@ def create_window(getReply, account):
 
     #================== Frame 2 - Display Avatar =================================================#
 
+    
     # top frame righthand side LONG
-    filler_frame= tk.Frame(frame2, highlightbackground = "black", highlightthickness = 2, bd=0)
-    filler_frame.place(x=68, y=6, width=325, height= 65)
+   # filler_frame= tk.Frame(frame2, highlightbackground = "black", highlightthickness = 2, bd=0)
+    #filler_frame.place(x=68, y=6, width=325, height= 65)
 
     # top frame lefthand side SHORT
     top_frame = tk.Frame(frame2, highlightbackground = "black", highlightthickness = 2, bd=0)
-    top_frame.place(x=6, y=6, width=66, height=65)
+    top_frame.place(x=6, y=6, width=388, height=65)
+    # filler label righthand side LONG within filler_frame
+    filler_label = Label(frame2, bg="#84CBEE")
+    filler_label.place(x=7, y=7, width=386, height=63)
 
     # contains circle1 image within top_frame
     top_label = Label(frame2, bg="#84CBEE")
@@ -413,11 +420,7 @@ def create_window(getReply, account):
 
     # contains avatar image within top_label
     top_img_label = Label(frame2, bg="#84CBEE")
-    top_img_label.place(x=14, y=14, width=50, height=50)
-
-    # filler label righthand side LONG within filler_frame
-    filler_label = Label(frame2, bg="#84CBEE")
-    filler_label.place(x=70, y=7, width=322, height=63)
+    top_img_label.place(x=160, y=14, width=50, height=50)
     
     # displaying frame 2 avatar within circle in top label
     def frame2_avatar():
@@ -429,15 +432,16 @@ def create_window(getReply, account):
         resize_img1 = photo1.resize((45, 45), Image.LANCZOS) # resizing 
         img1 = ImageTk.PhotoImage(resize_img1)
         top_img_label.image =img1 # saving reference of photo 
-        top_img_label.place(x=19, y=19, height=40, width=40) # placing the image label
+        top_img_label.place(x=180, y=19, height=40, width=40) # placing the image label
         top_img_label.configure(image=img1) # setting the label to the image
         
         circle = Image.open('circle.png')
         resize_circle = circle.resize((70,70), Image.LANCZOS)
         circle1 = ImageTk.PhotoImage(resize_circle)
         top_label.image = circle1
-        top_label.place(x=7, y=7, height=63, width=63)
+        top_label.place(x=168, y=7, height=63, width=63)
         top_label.configure(image=circle1)
+    
     
     #================== Root Window buttons code =========================================================#
 
