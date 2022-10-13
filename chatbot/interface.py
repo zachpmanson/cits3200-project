@@ -8,7 +8,7 @@ from PIL import ImageTk, Image
 import python_avatars as pa
 import time 
 import random
-# import pyvips
+import pyvips
 from os.path import exists
 import alarm
 import aboutus
@@ -74,6 +74,7 @@ def create_window(getReply, account):
                 chat_window.insert(END, f"\nAssistant \nThe closest result is ")
                 url = reply
                 chat_window.insert(END,"here",hyperlink.add(partial(webbrowser.open, url)))
+                chat_window.insert(END, "\n\n")
                 global map_image 
                 map_image = PhotoImage(file='map_sc.png') # importing the image, need to add image resizing
                 chat_window.image_create(END, image=map_image)
@@ -303,8 +304,8 @@ def create_window(getReply, account):
             clothing_color=eval('pa.ClothingColor.%s' % clothecolor),
         )
         my_avatar.render("my_avatar.svg")
-        # pyvips.cache_set_max(0)
-        # image = pyvips.Image.new_from_file("my_avatar.svg", dpi=300)
+        pyvips.cache_set_max(0)
+        image = pyvips.Image.new_from_file("my_avatar.svg", dpi=300)
         image.write_to_file("my_avatar.png")
     
 
