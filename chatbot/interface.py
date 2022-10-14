@@ -10,7 +10,6 @@ import time
 import random
 import pyvips
 from os.path import exists
-import alarm
 import aboutus
 import help
 import threading
@@ -499,8 +498,6 @@ def create_window(getReply, account):
     file_menu.add_command(label="Clear Chat Window", command=lambda:[clear_chat_window(), chat_window_state()]) # un assigned menu
     file_menu.add_command(label="Log Out",command=lambda:[show_frame(frame1), clear_chat_window()])  # calls return frame1 function
     file_menu.add_command(label="Hush Mode", command=lambda:hush()) # calls hush function
-    # Alarm: an error here, couldn't work well 
-    file_menu.add_command(label="Alarm", command=lambda:alarm.launchAlarm()) # calls alarm function
     file_menu.add_command(label="About Us", command=lambda:aboutus.launchBrowser()) #calls a web about Yolia info
     file_menu.add_command(label="Help", command=lambda:help.launchHelp()) # instructions
 

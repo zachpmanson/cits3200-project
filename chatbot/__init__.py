@@ -17,6 +17,8 @@ from better_profanity import profanity
 import random
 from threading import Thread
 import maps
+import re
+
 
 # Sends packed big endian message 
 def send_msg(sock, msg):
@@ -307,8 +309,13 @@ def getReply(msg):
         elif int == 2:
             reply = "What sort of bot do you think I am?"
 
-    elif (lowermsg.startswith("reminder")):
-        reply = alarm.launchAlarm()
+    elif (lowermsg.startswith("remind me ")):
+        regex = re.match("remind me to (.*) in (\d+) min", lowermsg)
+        if regex:
+            alarm.launchAlarm(regex.group(1),float(regex.group(2)))
+            reply = f"Will remind you to {regex.group(1)} in {regex.group(2)} minutes!"
+        else:
+            reply = "Invalid reminder!"
 
     elif(msg):
         reply = get_chatbot_reply(msg)
