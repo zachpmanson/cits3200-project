@@ -30,7 +30,7 @@ def launchAlarm(msg, mins):
 
 def create_popup():
     print("creating popup")
-    messagebox.showinfo(title="Reminder", message=f"Bot Reminder: \n--- {alarm_msg} ---\n")
+    messagebox.showinfo(title="Reminder", message=alarm_msg)
 
 
 if __name__ == "__main__":    
