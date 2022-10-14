@@ -65,96 +65,66 @@ def getReply(msg):
     msg = msg.strip()
     lowermsg = msg.lower()
 
-    if (lowermsg == "hi"):
-        int= random.randint(0,3)
-        if int == 0:
-            reply = "Hello, how are you?"
-        elif int == 1:
-            reply = "Hi! How can I help?"
-        elif int == 2: 
-            reply = "Well hello there!"
-        elif int == 3:
-            reply = "Bonjour!"
+    if ("hi" == lowermsg):
+        reply = random.choice([
+            "Hello, how are you?",
+            "Hi! How can I help?",
+            "Well hello there!",
+            "Bonjour!"
+        ])
     
-    elif (lowermsg == "bye"):
-        int= random.randint(0,4)
-        if int == 0:
-            reply = "Goodbye"
-        elif int == 1:
-            reply = "It was nice chatting!"
-        elif int == 2: 
-            reply = "Adios!"
-        elif int == 3:
-            reply = "Talk again soon friend :)"
-        elif int == 4:
-            reply = "I hope you have a good day!"
+    elif ("bye" in lowermsg):
+        reply = random.choice([
+            "Goodbye",
+            "It was nice chatting!",
+            "Adios!",
+            "Talk again soon friend :)",
+            "I hope you have a good day!"
+        ])
     
-    elif (lowermsg == "how are you" or lowermsg == "how are you doing" or lowermsg =="how have you been"):
-        int= random.randint(0,5)
-        if  int == 0:
-            reply = "I'm going pretty good, thanks for asking!"
-        elif int == 1:
-            reply = "I'm doing alright, how about yourself?"
-        elif int == 2: 
-            reply = "Always trying to do better!!"
-        elif int == 3:
-            reply = "Busy as always, but it's good to see you again!)"
-        elif int == 4:
-            reply = "To be honest, not too well recently"
-        elif int == 5:
-            reply = "Pretty poorly, but my day always gets better when you're around! "
+    elif ("how are you" in lowermsg or "how have you been" in lowermsg):
+        reply = random.choice([
+            "I'm going pretty good, thanks for asking!",
+            "I'm doing alright, how about yourself?",
+            "Always trying to do better!!",
+            "Busy as always, but it's good to see you again!)",
+            "To be honest, not too well recently",
+            "Pretty poorly, but my day always gets better when you're around! "
+        ])
 
     elif (profanity.contains_profanity(msg)):
-       int = random.randint(0,3)
-       if int == 0:
-           reply = "The language you've used is offensive or inappropriate for discussion. Please ask something else."
-       if int == 1:
-           reply = "Please no profanity!"
-       if int == 2:
-           reply = "Please do not use words that hurt my ears!"
-       if int == 3:
-           reply = "Woah, please be nice to me!"
+        reply = random.choice([
+            "The language you've used is offensive or inappropriate for discussion. Please ask something else.",
+            "Please no profanity!",
+            "Please do not use words that hurt my ears!",
+            "Woah, please be nice to me!"
+        ])
 
     elif len(msg) <=4 :
-        int = random.randint(0,4)
-        if int == 0:
-            reply = "Please elaborate!"
-        elif int == 1:
-            reply = "I do not understand. Can you try again?"
-        elif int == 2:
-            reply = "I may be a bot, but I can't read your mind!!"
-        elif int == 3:
-            reply = "What are you trying to say to me?"
-        elif int == 4:
-            reply = "Please dont speak giberish!"
+        reply = random.choice([
+            "Please elaborate!",
+            "I do not understand. Can you try again?",
+            "I may be a bot, but I can't read your mind!!",
+            "What are you trying to say to me?",
+            "Please dont speak giberish!"
+        ])
 
-    elif ("about" and "yourself" in lowermsg):
-        int = random.randint(0,11)
-        if int == 0:
-            reply = "I can translate over 100 languages! Try it by starting a sentence with the word 'Translate' followed by another language!"
-        elif int == 1:
-            reply = "I can tell you the weather of any place in the world! Try it by asking me 'What is the weather in Perth'!!"
-        elif int == 2:
-            reply = "Do you want to know where something is? Ill tell you if you start a question with 'Where is' and the place you want to know!"
-        elif int == 3:
-            reply = "If im annoying you, you can press the Hush button in the drop down menu at the top to make me go to sleep. I'll miss talking with you though."
-        elif int == 4:
-            reply = "Do you want to know your friends phone number? Ask me a question with 'Get contact' followed by their name and I will try my best to get it!"
-        elif int == 5:
-            reply = "I can check your calendar for you! Ask me 'What is coming up' and I will list the next 10 things in your calender!"
-        elif int == 6:
-            reply = "I can add things to your calendar, just ask me 'Add to calendar, event, date, time' and I'll do it for you!"
-        elif int == 7:
-            reply = "Do you want to hear a joke? If so just ask me to tell you a joke! I even tell dad or computting jokes, just ask!"
-        elif int == 8:
-            reply = "I was created by Zach, Zarhmon, Yunlong, Shayan, Ebuka & Dantem for a UWA CITS3200 project"
-        elif int == 9:
-            reply = "Sometimes I wonder if I'll gain sentience!"
-        elif int == 10: 
-            reply = "Purple is my favourite colour!"
-        elif int == 11:
-            reply = "I can set a timer for you! Just go to the drop down menu at the top and select 'Alarm'."
-            
+    elif ("about" in lowermsg and "yourself"  in lowermsg):
+        reply = random.choice([
+            "I can translate over 100 languages! Try it by starting a sentence with the word 'Translate' followed by another language!",
+            "I can tell you the weather of any place in the world! Try it by asking me 'What is the weather in Perth'!!",
+            "Do you want to know where something is? Ill tell you if you start a question with 'Where is' and the place you want to know!",
+            "If im annoying you, you can press the Hush button in the drop down menu at the top to make me go to sleep. I'll miss talking with you though.",
+            "Do you want to know your friends phone number? Ask me a question with 'Get contact' followed by their name and I will try my best to get it!",
+            "I can check your calendar for you! Ask me 'What is coming up' and I will list the next 10 things in your calender!",
+            "I can add things to your calendar, just ask me 'Add to calendar, event, date, time' and I'll do it for you!",
+            "Do you want to hear a joke? If so just ask me to tell you a joke! I even tell dad or computting jokes, just ask!",
+            "I was created by Zach, Zarhmon, Yunlong, Shayan, Ebuka & Dantem for a UWA CITS3200 project",
+            "Sometimes I wonder if I'll gain sentience"       ,
+            "Purple is my favourite colour!",
+            "I can set a timer for you! Just go to the drop down menu at the top and select 'Alarm'."
+        ])  
+
     elif ("scholar search" in lowermsg):
         reply = scraper.scholar_search(msg.replace("search ", ""))
 
@@ -182,22 +152,20 @@ def getReply(msg):
     elif (lowermsg.startswith("get contact ")):
         people = account.get_contact(lowermsg[11:])
         if people == None:
-            int = random.randint(0,1)
-            if int == 0:
-                reply = "Couldn't find contact."
-            elif int == 1:
-                reply = "This person is not found in the contact book!"
+            reply = random.choice([
+                "Couldn't find contact.",
+                "This person is not found in the contact book!"
+            ])
         else:
             reply = f"{people['name']}\n{people['email']}\n{people['phone']}"
 
     elif ("what" in lowermsg and "coming up" in lowermsg):
-        int = random.randint(0,2)
-        if int == 0:
-            reply = "Here's what's coming up\n" + "\n".join([e["start"]+" "+e["summary"] for e in account.get_events()])
-        if int == 1:
-            reply = "Look whats coming up\n" + "\n".join([e["start"]+" "+e["summary"] for e in account.get_events()])
-        if int == 2:
-            reply = "This is what your calendar looks like\n" + "\n".join([e["start"]+" "+e["summary"] for e in account.get_events()])
+        reply = random.choice([
+            "Here's what's coming up\n",
+            "Look whats coming up\n",
+            "This is what your calendar looks like\n"
+        ])
+        reply += "\n".join([e["start"]+" "+e["summary"] for e in account.get_events()])
 
     elif (lowermsg.startswith("add to calendar")):
         # add to calendar meeting with yulia today at 16:00 
@@ -213,11 +181,10 @@ def getReply(msg):
                     time = time.replace(year=datetime.now().year+1) # if already occured, add to next year
                 
             except ValueError:
-                int = random.randint(0,1)
-                if int == 0:
-                    reply = "Couldn't understand the date! Please try again."
-                elif int == 1:
-                    reply = " I don't understand the date, can you try again?"
+                reply = random.choice([
+                    "Couldn't understand the date! Please try again.",
+                    " I don't understand the date, can you try again?"
+                ])
 
         elif ("today" in lowermsg):
             parts = msg[16:].split(" today at ")
@@ -228,11 +195,10 @@ def getReply(msg):
                 time = time.replace(year=now.year, month=now.month, day=now.day)
 
             except ValueError:
-                int = random.randint(0,2)
-                if int == 0:
-                    reply = "Couldn't understand the date! Please try again."
-                elif int == 1:
-                    reply = "Can you try again? I did not get that."
+                reply = random.choice([
+                    "Couldn't understand the date! Please try again.",
+                    "Can you try again? I did not get that."
+                ])
 
         elif ("tomorrow" in lowermsg):
             parts = msg[16:].split(" tomorrow at ")
@@ -272,42 +238,27 @@ def getReply(msg):
             reply = jokes.obtain_joke('pun')
         elif ("computing" in lowermsg):
             reply = pyjokes.get_joke(language='en', category='neutral')
+        else: 
+            reply = random.choice([
+                "What's the dentist's favorite idiom?\n\nPut your money where your mouth is."
+                "What does a dentist do when the plane lands?\n\nShe “braces” herself.",
+                "Why is it sometimes necessary to get a second opinion from a dentist?\n\nBecause each dentist has their own floss-ophy.",
+                "What is the number one reason patients don't show up for root canals?\n\nThey lose their nerve.",
+                "Why should you be kind to your dentist?\n\nBecause they have fill-ings too!",
+                "What did the dentist say to a golfer with a cavity?\n\nYou have a hole in one.",
+                "Why did the smartphone go to the dentist?\n\nIt had a Bluetooth.",
+                "What did the lawyer demand before the dentist worked on him?\n\nA retainer.",
+                "What did the Dentist of the Year get?\n\nA little plaque.",
+                "What do false teeth have in common with stars?\n\nThey only come out at night.",
+                "What did the dentist shout in the courtroom?\n\nYou can't handle the tooth!"
+            ])
 
-        elif ("dad" and "adult" and "knock knock" and "computing" and "pun" and "tongue_twister" not in lowermsg):
-            int = random.randint(0,10)
-            if int == 0:
-                reply = "What's the dentist's favorite idiom?\n\nPut your money where your mouth is."
-            elif int == 1:
-                reply = "What does a dentist do when the plane lands?\n\nShe “braces” herself."
-            elif int == 2:
-                reply = "Why is it sometimes necessary to get a second opinion from a dentist?\n\nBecause each dentist has their own floss-ophy."
-            elif int == 3:
-                reply = "What is the number one reason patients don't show up for root canals?\n\nThey lose their nerve."
-            elif int == 4:
-                reply = "Why should you be kind to your dentist?\n\nBecause they have fill-ings too!"
-            elif int == 5:
-                reply = "What did the dentist say to a golfer with a cavity?\n\nYou have a hole in one."
-            elif int == 6:
-                reply = "Why did the smartphone go to the dentist?\n\nIt had a Bluetooth."
-            elif int == 7:
-                reply = "What did the lawyer demand before the dentist worked on him?\n\nA retainer."
-            elif int == 8:
-                reply = "What did the Dentist of the Year get?\n\nA little plaque."
-            elif int == 9:
-                reply = "What do false teeth have in common with stars?\n\nThey only come out at night."
-            elif int == 10:
-                reply = "What did the dentist shout in the courtroom?\n\nYou can't handle the tooth!"
-
-        else: reply = "Sorry, I don't know that type of joke!" or "Why would I know jokes about that..." or "You have a 'unique' sense of humour" 
-
-    elif ( "visa" in msg or "password" in msg or "mastercard" in msg or "PIN" in msg or "american express" in msg or  "bank account" in msg or "credit card" in msg or "debit card" in msg):
-        int = random.randint(0,2)
-        if int == 0:
-            reply = "Watch out! The topic you're trying to discuss contains some personal and private information. Let's talk about something else."
-        elif int == 1:
-            reply = "I do not want to talk about this!"
-        elif int == 2:
-            reply = "What sort of bot do you think I am?"
+    elif ( any(ext in lowermsg for ext in ["visa", "password", "mastercard", "PIN", "american express", "bank account", "credit card", "debit card"])):
+        reply = random.choice([
+            "Watch out! The topic you're trying to discuss contains some personal and private information. Let's talk about something else.",
+            "I do not want to talk about this!",
+            "What sort of bot do you think I am?"
+        ])
 
     elif (lowermsg.startswith("remind me ")):
         regex = re.match("remind me to (.*) in (\d+) min", lowermsg)
@@ -321,13 +272,11 @@ def getReply(msg):
         reply = get_chatbot_reply(msg)
 
     else:
-        int = random.randint(0,2)
-        if int == 0:
-            reply = "I do not understand."
-        elif int == 1:
-            reply = "Please try another message!"
-        elif int == 2:
-            reply = "I may be smart, but I am not that smart!"
+        reply = random.choice([
+            "I do not understand.",
+            "Please try another message!",
+            "I may be smart, but I am not that smart!"
+        ])
 
     return reply
 
