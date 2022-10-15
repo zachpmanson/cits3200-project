@@ -8,7 +8,7 @@ from PIL import ImageTk, Image
 import python_avatars as pa
 import time 
 import random
-import pyvips
+#import pyvips
 from os.path import exists
 import aboutus
 import help
@@ -16,6 +16,11 @@ import threading
 from threading import Thread
 import webbrowser
 from functools import partial
+import __init__
+
+# Multiple maps global var./list
+imglist = []
+count = 0
 
 # outstanding UI issues
 # chat_window text formating, user and bot responses
@@ -28,7 +33,7 @@ set_font = ("Roboto", 10) # setting default font style and size
 bold_font = ("Roboto", 11, "bold") # change style to bold
 
 def create_window(getReply, account):
-   
+
 #================== Defining Functions =================================================# 
 
     # function to call google login and change to frame 2
@@ -55,6 +60,7 @@ def create_window(getReply, account):
         message_window.bind('<Return>', send)
 
     # send message function for frame2
+
     def send(input):    
         msg = message_window.get("1.0", END).strip()
         lowermsg = msg.lower()
@@ -70,14 +76,21 @@ def create_window(getReply, account):
             # time.sleep(1) test code
             # chat_window.tag_configure("right", justify='right') # configures window to input text right alligned
             # chat_window.tag_add("right", 50.50, "end")
+
             if (lowermsg.startswith("where is")):
+                global count
+                global map_image 
+                global imglist
                 chat_window.insert(END, f"\nAssistant \nThe closest result is ")
                 url = reply
                 chat_window.insert(END,"here",hyperlink.add(partial(webbrowser.open, url)))
                 chat_window.insert(END, "\n\n")
-                global map_image 
-                map_image = PhotoImage(file='map_sc.png') # importing the image, need to add image resizing
-                chat_window.image_create(END, image=map_image)
+        
+                map_image = PhotoImage(file='msc/map_sc'+str(count)+'.png') # importing the image, need to add image resizing
+                imglist.append(map_image)
+                chat_window.image_create(END, image=imglist[count])
+                count=count+1
+
             elif ("scholar search" in lowermsg):
                 chat_window.insert(END, f"\nAssistant \n")
                 for item in reply:
