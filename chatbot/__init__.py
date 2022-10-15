@@ -19,6 +19,8 @@ from threading import Thread
 import maps
 import re
 
+# count for multiple maps
+count = 0
 
 # Sends packed big endian message 
 def send_msg(sock, msg):
@@ -59,7 +61,6 @@ def get_chatbot_reply(msg):
     s.close()
     reply = data.decode("utf-8")
     return reply
-
 
 def getReply(msg):  
     msg = msg.strip()
@@ -145,8 +146,11 @@ def getReply(msg):
         reply =  detection # should be able to calculate certainty and state the language it's in, ultimately, "I'm __ % certain that this sentence is in ____"
 
     elif (lowermsg.startswith("where is")): # dantem use this 
-        url = maps.getMaps(msg.replace("where is ", ""))
-        maps.resizeMap("map_sc.png")
+        global count
+        url = maps.getMaps(msg.replace("where is ", ""), count)
+        mapf = "msc/map_sc" + str(count) + ".png"
+        maps.resizeMap(mapf, count)
+        count=count+1
         reply = url
 
     elif (lowermsg.startswith("get contact ")):
