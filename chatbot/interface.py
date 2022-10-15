@@ -27,6 +27,9 @@ set_font = ("Roboto", 10) # setting default font style and size
 
 bold_font = ("Roboto", 11, "bold") # change style to bold
 
+map_images = []
+
+
 def create_window(getReply, account):
    
 #================== Defining Functions =================================================# 
@@ -72,12 +75,12 @@ def create_window(getReply, account):
             # chat_window.tag_add("right", 50.50, "end")
             if (lowermsg.startswith("where is")):
                 chat_window.insert(END, f"\nAssistant \nThe closest result is ")
-                url = reply
+                url = reply[0]
+                map_path = reply[1]
                 chat_window.insert(END,"here",hyperlink.add(partial(webbrowser.open, url)))
                 chat_window.insert(END, "\n\n")
-                global map_image 
-                map_image = PhotoImage(file='map_sc.png') # importing the image, need to add image resizing
-                chat_window.image_create(END, image=map_image)
+                map_images.append(PhotoImage(file=map_path)) # importing the image, need to add image resizing
+                chat_window.image_create(END, image=map_images[-1])
             elif ("scholar search" in lowermsg):
                 chat_window.insert(END, f"\nAssistant \n")
                 for item in reply:
