@@ -16,7 +16,7 @@ import cv2
 
 #imagefn = 'map_sc.png'
 
-def getMaps(place) :
+def getMaps(place, map_count) :
     # 1 req = input("Location: ")
 
     # headless mode
@@ -49,7 +49,7 @@ def getMaps(place) :
     #bp.click()
 
     time.sleep(6)
-    driver.get_screenshot_as_file("map_sc.png")
+    driver.get_screenshot_as_file(f"map_sc{map_count}.png")
 
     #resizeMap('map_sc.png')
 
@@ -61,8 +61,8 @@ def getMaps(place) :
     #driver.quit()
 
 #pip install opencv-python, for importing cv2
-def resizeMap(imagefn) :
-    img=cv2.imread(imagefn)
+def resizeMap(image_path) :
+    img=cv2.imread(image_path)
 
     scale=0.225
     w=int(img.shape[1]*scale)
@@ -71,7 +71,7 @@ def resizeMap(imagefn) :
 
     resized=cv2.resize(img, dim,interpolation=cv2.INTER_AREA)
 
-    cv2.imwrite('map_sc.png', resized)
+    cv2.imwrite(image_path, resized)
 
     #cv2.waitKey(0)
     #cv2.destroyAllWindows()

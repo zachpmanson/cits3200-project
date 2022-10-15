@@ -48,3 +48,6 @@ Important Dates
 Useful links
  - [Project Homepage](https://teaching.csse.uwa.edu.au/units/CITS3200/project.html)
  - [Project Instructions](https://teaching.csse.uwa.edu.au/units/CITS3200/project/instructions.html)
+
+pyinstaller --onefile .\__init__.py .\aboutus.py .\alarm.py .\cal.py .\interface.py .\jokes.py .\maps.py .\scraper.py .\weather.py -p .
+pyinstaller .\__init__.py .\aboutus.py .\alarm.py .\cal.py .\interface.py .\jokes.py .\maps.py .\scraper.py .\weather.py -p .
