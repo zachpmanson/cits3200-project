@@ -91,9 +91,9 @@ def create_window(getReply, account):
 
             elif ("scholar search" in lowermsg):
                 chat_window.insert(END, f"\nAssistant \n")
-                for item in reply:
-                    chat_window.insert(END,item["title"],hyperlink.add(partial(webbrowser.open, item["link"])))
-
+                for i,item in enumerate(reply):
+                    chat_window.insert(END, f"{i+1}. ")
+                    chat_window.insert(END,f"{item['title']}\n",hyperlink.add(partial(webbrowser.open, item["link"])))
 
             elif ("search" in lowermsg):
                 chat_window.insert(END, f"\nAssistant \n")
