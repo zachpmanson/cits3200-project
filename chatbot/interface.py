@@ -70,15 +70,15 @@ def create_window(getReply, account):
             print(f"User: {msg}")
             print(f"Bot: {reply}")
             chat_window.configure(state="normal") # allows inserting into window
-            chat_window.insert(END, f"\nUser \n{msg}\n")
-            # chat_window.tag_configure("right", justify='right') # configures window to input text right alligned
+            chat_window.insert(END, f"\nUser:\n", "bold")
+            chat_window.insert(END, f"{msg}\n")            # chat_window.tag_configure("right", justify='right') # configures window to input text right alligned
             # chat_window.tag_add("right", 50.50, "end")
-
+            chat_window.insert(END, f"\nAssistant:\n", "bold")
             if (lowermsg.startswith("where is")):
                 global count
                 global map_image 
                 global imglist
-                chat_window.insert(END, f"\nAssistant \nThe closest result is ")
+                chat_window.insert(END, f"The closest result is ")
                 url = reply[0]
                 map_path = reply[1]
                 chat_window.insert(END,"here",hyperlink.add(partial(webbrowser.open, url)))
@@ -101,7 +101,7 @@ def create_window(getReply, account):
                     chat_window.insert(END, f"{i+1}. ")
                     chat_window.insert(END,f"{item['title']}\n",hyperlink.add(partial(webbrowser.open, item["link"])))
             else:
-                chat_window.insert(END, f"\nAssistant \n{reply}\n")
+                chat_window.insert(END, f"{reply}\n")
                 print("\n")
             chat_window.configure(state="disabled") # disables users for inputting directly into window
             chat_window.see(tk.END) # moves scroll bar to latest message location
@@ -445,6 +445,7 @@ def create_window(getReply, account):
     # chat window
     chat_window = Text(frame2, bd=1, bg="#84CBEE", width =50, height = 8, cursor="arrow", wrap=WORD, font= set_font)
     chat_window.place(x=6, y=72, height= 342, width= 388)
+    chat_window.tag_configure("bold", font=bold_font)
     chat_window.configure(state="disabled") # disables users for inputting directly into window
     
     hyperlink = HyperlinkManager(chat_window)
