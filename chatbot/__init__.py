@@ -19,12 +19,8 @@ from threading import Thread
 import maps
 import re
 
-<<<<<<< HEAD
-map_count = 0
-=======
 # count for multiple maps
 count = 0
->>>>>>> 78f204abe69885de1a9ed164fa40266f5bbda194
 
 # Sends packed big endian message 
 def send_msg(sock, msg):
