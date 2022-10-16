@@ -19,7 +19,12 @@ from threading import Thread
 import maps
 import re
 
+<<<<<<< HEAD
 map_count = 0
+=======
+# count for multiple maps
+count = 0
+>>>>>>> 78f204abe69885de1a9ed164fa40266f5bbda194
 
 # Sends packed big endian message 
 def send_msg(sock, msg):
@@ -60,7 +65,6 @@ def get_chatbot_reply(msg):
     s.close()
     reply = data.decode("utf-8")
     return reply
-
 
 def getReply(msg):  
     msg = msg.strip()
@@ -123,7 +127,8 @@ def getReply(msg):
             "I was created by Zach, Zarhmon, Yunlong, Shayan, Ebuka & Dantem for a UWA CITS3200 project",
             "Sometimes I wonder if I'll gain sentience"       ,
             "Purple is my favourite colour!",
-            "I can set a timer for you! Just go to the drop down menu at the top and select 'Alarm'."
+            "I can set a timer for you! Just go to the drop down menu at the top and select 'Alarm'.", 
+            "I know your contact list, as me to 'get contact' and the name of the person you want!"
         ])  
 
     elif ("scholar search" in lowermsg):
@@ -146,11 +151,12 @@ def getReply(msg):
         reply =  detection # should be able to calculate certainty and state the language it's in, ultimately, "I'm __ % certain that this sentence is in ____"
 
     elif (lowermsg.startswith("where is")): # dantem use this 
-        global map_count
-        url = maps.getMaps(msg.replace("where is ", ""), map_count)
-        maps.resizeMap(f"map_sc{map_count}.png")
-        reply = [url, f"./map_sc{map_count}.png"]
-        map_count += 1
+        global count
+        url = maps.getMaps(msg.replace("where is ", ""), count)
+        mapf = "msc/map_sc" + str(count) + ".png"
+        maps.resizeMap(mapf, count)
+        count=count+1
+        reply = url
 
     elif (lowermsg.startswith("get contact ")):
         people = account.get_contact(lowermsg[11:])

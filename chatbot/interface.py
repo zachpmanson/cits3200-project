@@ -16,11 +16,11 @@ import threading
 from threading import Thread
 import webbrowser
 from functools import partial
+import __init__
 
-# outstanding UI issues
-# chat_window text formating, user and bot responses
-# figuring out hush function requirements
-# custom buttons, gui colour scheme
+# Multiple maps global var./list
+imglist = []
+count = 0
 
 #======================= Setting Fonts =================================================# 
 set_font = ("Roboto", 10) # setting default font style and size
@@ -31,7 +31,7 @@ map_images = []
 
 
 def create_window(getReply, account):
-   
+
 #================== Defining Functions =================================================# 
 
     # function to call google login and change to frame 2
@@ -58,6 +58,7 @@ def create_window(getReply, account):
         message_window.bind('<Return>', send)
 
     # send message function for frame2
+
     def send(input):    
         msg = message_window.get("1.0", END).strip()
         lowermsg = msg.lower()
@@ -70,17 +71,24 @@ def create_window(getReply, account):
             print(f"Bot: {reply}")
             chat_window.configure(state="normal") # allows inserting into window
             chat_window.insert(END, f"\nUser \n{msg}\n")
-            # time.sleep(1) test code
             # chat_window.tag_configure("right", justify='right') # configures window to input text right alligned
             # chat_window.tag_add("right", 50.50, "end")
+
             if (lowermsg.startswith("where is")):
+                global count
+                global map_image 
+                global imglist
                 chat_window.insert(END, f"\nAssistant \nThe closest result is ")
                 url = reply[0]
                 map_path = reply[1]
                 chat_window.insert(END,"here",hyperlink.add(partial(webbrowser.open, url)))
                 chat_window.insert(END, "\n\n")
-                map_images.append(PhotoImage(file=map_path)) # importing the image, need to add image resizing
-                chat_window.image_create(END, image=map_images[-1])
+        
+                map_image = PhotoImage(file='msc/map_sc'+str(count)+'.png') # importing the image, need to add image resizing
+                imglist.append(map_image)
+                chat_window.image_create(END, image=imglist[count])
+                count=count+1
+
             elif ("scholar search" in lowermsg):
                 chat_window.insert(END, f"\nAssistant \n")
                 for item in reply:
@@ -110,7 +118,7 @@ def create_window(getReply, account):
 
     #================== Creating Root Window =================================================#    
     root_window = tk.Tk()
-    root_window.title("Chatter-Bot V.1.0") # window name
+    root_window.title("YuBot") # window name
     root_window.geometry("400x500+50+50") # dimensions + Location; Width x Height + x + y axis
     root_window.resizable(width=False, height=False) # disable window resize
     root_window.rowconfigure(0, weight=1) # configuring window rows
@@ -322,9 +330,7 @@ def create_window(getReply, account):
         image = pyvips.Image.new_from_file("my_avatar.svg", dpi=300)
         image.write_to_file("my_avatar.png")
     
-
 #================== Frame 1 - Button creation code ======================================================#
-    # button_right = PhotoImage(file="chatbot\\button_right.png")
     # Hair buttons & label
     hair_bdr = tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
     hair_bdr.place(x=49, y=242, height=42, width=77)
@@ -443,17 +449,11 @@ def create_window(getReply, account):
     
     hyperlink = HyperlinkManager(chat_window)
 
-
     # message window
     message_window = Text(frame2, bg="#84CBEE", width=30, cursor="arrow", wrap=WORD, font= set_font)
     message_window.place(x=6, y=426, height=66, width=388)
 
     #================== Frame 2 - Display Avatar =================================================#
-
-    
-    # top frame righthand side LONG
-   # filler_frame= tk.Frame(frame2, highlightbackground = "black", highlightthickness = 2, bd=0)
-    #filler_frame.place(x=68, y=6, width=325, height= 65)
 
     # top frame lefthand side SHORT
     top_frame = tk.Frame(frame2, highlightbackground = "black", highlightthickness = 2, bd=0)
@@ -490,7 +490,6 @@ def create_window(getReply, account):
         top_label.place(x=168, y=7, height=63, width=63)
         top_label.configure(image=circle1)
     
-    
     #================== Root Window buttons code =========================================================#
 
     # main menu bar 
@@ -513,7 +512,6 @@ def create_window(getReply, account):
     
     return root_window
 
-# from tkinter import *
 
 class HyperlinkManager:
     def __init__(self, text):
