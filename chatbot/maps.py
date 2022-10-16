@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 #waits
 import time
-
+import platform
 import os
 
 import cv2
@@ -30,7 +30,10 @@ def getMaps(place, count) :
     # https://timonweb.com/misc/fixing-error-chromedriver-cannot-be-opened-because-the-developer-cannot-be-verified-unable-to-launch-the-chrome-browser-on-mac-os/
     # xattr -d com.apple.quarantine /Users/danteshabani/Desktop/cits3200-project/chatbot/chromedriver (for mac security issue)
     script_dir = os.path.dirname(os.path.realpath(__file__))
-    PATH = os.path.join(script_dir, "chromedriver")
+    if platform.system() == "Windows":
+        PATH = os.path.join(script_dir, "chromedriver.exe")
+    else:
+        PATH = os.path.join(script_dir, "chromedriver")
     driver = webdriver.Chrome(PATH, options=op)
 
     # for location stuff: potentially use URL with coords OR from IP
@@ -60,7 +63,7 @@ def getMaps(place, count) :
 def resizeMap(imagefn, count) :
     img=cv2.imread(imagefn)
 
-    scale=0.225
+    scale=0.4
     w=int(img.shape[1]*scale)
     h=int(img.shape[0]*scale)
     dim=(w,h)
