@@ -8,7 +8,7 @@ from PIL import ImageTk, Image
 import python_avatars as pa
 import time 
 import random
-#import pyvips
+import pyvips
 from os.path import exists
 import aboutus
 import help
@@ -21,11 +21,6 @@ import __init__
 # Multiple maps global var./list
 imglist = []
 count = 0
-
-# outstanding UI issues
-# chat_window text formating, user and bot responses
-# figuring out hush function requirements
-# custom buttons, gui colour scheme
 
 #======================= Setting Fonts =================================================# 
 set_font = ("Roboto", 10) # setting default font style and size
@@ -73,7 +68,6 @@ def create_window(getReply, account):
             print(f"Bot: {reply}")
             chat_window.configure(state="normal") # allows inserting into window
             chat_window.insert(END, f"\nUser \n{msg}\n")
-            # time.sleep(1) test code
             # chat_window.tag_configure("right", justify='right') # configures window to input text right alligned
             # chat_window.tag_add("right", 50.50, "end")
 
@@ -332,9 +326,7 @@ def create_window(getReply, account):
         image = pyvips.Image.new_from_file("my_avatar.svg", dpi=300)
         image.write_to_file("my_avatar.png")
     
-
 #================== Frame 1 - Button creation code ======================================================#
-    # button_right = PhotoImage(file="chatbot\\button_right.png")
     # Hair buttons & label
     hair_bdr = tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0)
     hair_bdr.place(x=49, y=242, height=42, width=77)
@@ -453,17 +445,11 @@ def create_window(getReply, account):
     
     hyperlink = HyperlinkManager(chat_window)
 
-
     # message window
     message_window = Text(frame2, bg="#84CBEE", width=30, cursor="arrow", wrap=WORD, font= set_font)
     message_window.place(x=6, y=426, height=66, width=388)
 
     #================== Frame 2 - Display Avatar =================================================#
-
-    
-    # top frame righthand side LONG
-   # filler_frame= tk.Frame(frame2, highlightbackground = "black", highlightthickness = 2, bd=0)
-    #filler_frame.place(x=68, y=6, width=325, height= 65)
 
     # top frame lefthand side SHORT
     top_frame = tk.Frame(frame2, highlightbackground = "black", highlightthickness = 2, bd=0)
@@ -500,7 +486,6 @@ def create_window(getReply, account):
         top_label.place(x=168, y=7, height=63, width=63)
         top_label.configure(image=circle1)
     
-    
     #================== Root Window buttons code =========================================================#
 
     # main menu bar 
@@ -523,7 +508,6 @@ def create_window(getReply, account):
     
     return root_window
 
-# from tkinter import *
 
 class HyperlinkManager:
     def __init__(self, text):

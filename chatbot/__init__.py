@@ -123,7 +123,8 @@ def getReply(msg):
             "I was created by Zach, Zarhmon, Yunlong, Shayan, Ebuka & Dantem for a UWA CITS3200 project",
             "Sometimes I wonder if I'll gain sentience"       ,
             "Purple is my favourite colour!",
-            "I can set a timer for you! Just go to the drop down menu at the top and select 'Alarm'."
+            "I can set a timer for you! Just go to the drop down menu at the top and select 'Alarm'.", 
+            "I know your contact list, as me to 'get contact' and the name of the person you want!"
         ])  
 
     elif ("scholar search" in lowermsg):
