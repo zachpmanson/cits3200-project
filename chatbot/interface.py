@@ -114,7 +114,7 @@ def create_window(getReply, account):
 
     #================== Creating Root Window =================================================#    
     root_window = tk.Tk()
-    root_window.title("Chatter-Bot V.1.0") # window name
+    root_window.title("YuBot") # window name
     root_window.geometry("400x500+50+50") # dimensions + Location; Width x Height + x + y axis
     root_window.resizable(width=False, height=False) # disable window resize
     root_window.rowconfigure(0, weight=1) # configuring window rows
