@@ -64,7 +64,7 @@ def getMaps(place, map_count) :
 def resizeMap(image_path) :
     img=cv2.imread(image_path)
 
-    scale=0.225
+    scale=0.4
     w=int(img.shape[1]*scale)
     h=int(img.shape[0]*scale)
     dim=(w,h)
