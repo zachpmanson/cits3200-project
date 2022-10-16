@@ -141,22 +141,6 @@ def create_window(getReply, account):
     text_lbl = tk.Label(frame1, bg='#84CBEE', text= "Hi, I am your assistant!", font=bold_font)
     text_lbl.place(x=7, y=7, height = 25, width = 386)
 
-    # Inserting avatar image
-    def insert_img():
-        av_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0) # creating avatar border
-        av_bdr.place(x=124, y=34, height=202, width=152)
-        if exists('my_avatar.png'):
-            photo = Image.open('my_avatar.png') # importing the image
-        else:
-            photo = Image.open('generic_avatar.png') # importing the image
-        resize_img = photo.resize((200, 200), Image.LANCZOS) # resizing 
-        img = ImageTk.PhotoImage(resize_img)
-        av_lbl = tk.Label(frame1) # creating image label
-        av_lbl.image =img # saving reference of photo 
-        av_lbl.place(x=125, y=35, height=200, width=150) # placing the image label
-        av_lbl.configure(image=img) # setting the label to the image
-
-    insert_img()
 
     # Creating avatar elemnt types
     list_skin_color = cycle(['TANNED','YELLOW','PALE','LIGHT','BROWN','DARK_BROWN','BLACK'])
@@ -471,6 +455,24 @@ def create_window(getReply, account):
     top_img_label = Label(frame2, bg="#84CBEE")
     top_img_label.place(x=160, y=14, width=50, height=50)
     
+    
+    #================== Root Window buttons code =========================================================#
+
+    # main menu bar 
+    main_menu = Menu(root_window)
+
+    # sub/dropdown menu 
+    file_menu = Menu(root_window)
+    file_menu.add_command(label="Clear Chat Window", command=lambda:[clear_chat_window(), chat_window_state()]) # un assigned menu
+    file_menu.add_command(label="Log Out",command=lambda:[show_frame(frame1), clear_chat_window()])  # calls return frame1 function
+    file_menu.add_command(label="Hush Mode", command=lambda:hush()) # calls hush function
+    file_menu.add_command(label="About Us", command=lambda:aboutus.launchBrowser()) #calls a web about Yolia info
+    file_menu.add_command(label="Help", command=lambda:help.launchHelp()) # instructions
+
+    # main menu widgets 
+    main_menu.add_cascade(label="Options", menu = file_menu)  # shows drop down button
+    root_window.config(menu=main_menu) 
+
     # displaying frame 2 avatar within circle in top label
     def frame2_avatar():
         if exists('my_avatar.png'):
@@ -490,23 +492,25 @@ def create_window(getReply, account):
         top_label.image = circle1
         top_label.place(x=168, y=7, height=63, width=63)
         top_label.configure(image=circle1)
-    
-    #================== Root Window buttons code =========================================================#
 
-    # main menu bar 
-    main_menu = Menu(root_window)
+    # Inserting avatar image
+    def insert_img():
+        av_bdr =tk.Frame(frame1, highlightbackground = "black", highlightthickness = 2, bd=0) # creating avatar border
+        av_bdr.place(x=124, y=34, height=202, width=152)
+        if exists('my_avatar.png'):
+            photo = Image.open('my_avatar.png') # importing the image
+        else:
+            photo = Image.open('generic_avatar.png') # importing the image
+        resize_img = photo.resize((200, 200), Image.LANCZOS) # resizing 
+        img = ImageTk.PhotoImage(resize_img)
+        av_lbl = tk.Label(frame1) # creating image label
+        av_lbl.image =img # saving reference of photo 
+        av_lbl.place(x=125, y=35, height=200, width=150) # placing the image label
+        av_lbl.configure(image=img) # setting the label to the image
 
-    # sub/dropdown menu 
-    file_menu = Menu(root_window)
-    file_menu.add_command(label="Clear Chat Window", command=lambda:[clear_chat_window(), chat_window_state()]) # un assigned menu
-    file_menu.add_command(label="Log Out",command=lambda:[show_frame(frame1), clear_chat_window()])  # calls return frame1 function
-    file_menu.add_command(label="Hush Mode", command=lambda:hush()) # calls hush function
-    file_menu.add_command(label="About Us", command=lambda:aboutus.launchBrowser()) #calls a web about Yolia info
-    file_menu.add_command(label="Help", command=lambda:help.launchHelp()) # instructions
+        frame2_avatar()
 
-    # main menu widgets 
-    main_menu.add_cascade(label="Options", menu = file_menu)  # shows drop down button
-    root_window.config(menu=main_menu) 
+    insert_img()
 
     frame2_avatar()
     show_frame(frame1)
@@ -545,7 +549,3 @@ class HyperlinkManager:
                 self.links[tag]()
                 return
 
-if __name__=="__main__":
-    #window = create_window(lambda x: "Placeholder reply funtion")
-    window = create_window(lambda x: "Placeholder reply funtion", lambda x:x)
-    window.mainloop()

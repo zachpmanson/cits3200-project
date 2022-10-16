@@ -140,16 +140,3 @@ class Calendar():
         }
         return personInfo
 
-
-if __name__ == '__main__':
-    cal = Calendar()
-    cal.login()
-    from pprint import pprint
-    pprint(cal.get_calendar_list())
-    pprint(cal.get_events())
-
-    contact = cal.get_contact("zo")
-    print("Search")
-    pprint(contact)
-    # if input("Create calendar event (y/n)")=="y":
-        # cal.create_event()

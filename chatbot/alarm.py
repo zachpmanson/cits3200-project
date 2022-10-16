@@ -32,11 +32,4 @@ def create_popup():
     print("creating popup")
     messagebox.showinfo(title="Reminder", message=alarm_msg)
 
-
-if __name__ == "__main__":    
-    ala = launchAlarm()
-    ala.on_check()
-
-
-    
     

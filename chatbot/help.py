@@ -45,5 +45,3 @@ def launchHelp():
     text.insert(tkinter.END, str)
     root.mainloop()
 
-if __name__ == "__main__":   
-    launchHelp()

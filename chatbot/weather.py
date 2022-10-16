@@ -25,13 +25,4 @@ def weather(city):
 
 
 
-if __name__ == "__main__":
-    city = input("City Name ->  ")
-    city = city+"weather"
-    print(weather(city))
-    print("Have a wonderful Day!")
-    
-
-
-
 

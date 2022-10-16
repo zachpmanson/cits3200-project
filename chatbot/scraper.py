@@ -39,12 +39,3 @@ def scholar_search(query):
         print(info.getText())
         print("--------------------------------------------------------------------------------------------")
     return links
-
-if __name__ == "__main__":
-    q = input("Enter query: ")
-    q = q.replace("search ", "")
-    from pprint import pprint
-    pprint(google_search(q))
-    pprint(scholar_search(q))
-    print("--------------------------------------------------------------------------------------------")
-    
